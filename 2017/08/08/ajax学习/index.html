@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/08/ajax学习/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Ajax:Asynchroous JavaScript + XML,客户端和服务器的交互，能够向服务器请求额外的信息而不用卸载页面。 Ajax的技术核心是 XMLHttpRequest对象，以异步的方式从服务器获取信息，可以不必刷新页面也能取得数据。 XMLHttpRequest: var xhr = new XMLHttpRequese;  1.XMLHttpRrequestXHR用法1)准备">
-<meta property="og:updated_time" content="2017-08-12T11:11:56.000Z">
+<meta property="og:updated_time" content="2017-08-12T12:41:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ajax学习">
 <meta name="twitter:description" content="Ajax:Asynchroous JavaScript + XML,客户端和服务器的交互，能够向服务器请求额外的信息而不用卸载页面。 Ajax的技术核心是 XMLHttpRequest对象，以异步的方式从服务器获取信息，可以不必刷新页面也能取得数据。 XMLHttpRequest: var xhr = new XMLHttpRequese;  1.XMLHttpRrequestXHR用法1)准备">
@@ -301,24 +301,26 @@
 <li>浏览器不能得到具体数据，但可通过监听load、error事件确定响应时间。</li>
 <li>用于跟踪用户点击页面或者动态广告曝光次数。</li>
 <li>缺点：只能发生GET请求；无法访问服务器的响应文本。</li>
-<li><h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4></li>
+</ul>
+<h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><ul>
 <li>JSONP:JSON with padding(填充式JSON，参数式JSON)，包含在函数调用中的JSON。</li>
 <li><p>JSONP由两部分组成：回调函数和数据。</p>
 <pre><code>- 回调函数是响应到来时页面调用的函数。回调函数的名字一般在请求中指定。
 -  数据：传入回调函数中的JSON数据。
 `http://url/json/?callback=handleResponse `
 </code></pre></li>
-<li><p>JSONP是通过动态<script>元素使用的，可以为src指定一个跨越的URL。</p>
+<li><p>JSONP是通过动态<code>&lt;script&gt;</code>元素使用的，可以为src指定一个跨越的URL。</p>
 </li>
 <li>优点：可以直接访问服务器响应文本，支持服务器和客户端的双向通信。</li>
 <li>缺点：从其他域加载代码==&gt;安全问题；确定是否失败不容易。</li>
 </ul>
-<h4 id="Comet"><a href="#Comet" class="headerlink" title="Comet"></a>Comet</h4><p>Comet是一种服务器向页面推送数据的技术。信息近乎实时的被推送到页面，非常适合处理体育比赛的分数和股价。<br>Comet方式：长轮询和流。</p>
+<h4 id="Comet"><a href="#Comet" class="headerlink" title="Comet"></a>Comet</h4><p>Comet是一种服务器向页面推送数据的技术。信息近乎实时的被推送到页面，非常适合处理体育比赛的分数和股价。</p>
+<p>Comet方式：长轮询和流。</p>
 <ul>
 <li>长轮询：页面请求，服务器一直保持连接打开，直到有数据可发送，发送完数据后，连接关闭，随即在发生一个新请求。所有浏览器都支持。setTimeout()实现。</li>
 <li>HTTP流：浏览器发起请求，而服务器保持打开，然后周期性地向浏览器发生数据。</li>
 </ul>
-</script></p></li></ul>
+
       
 
       

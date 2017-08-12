@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://github.com/elsesir/myBlog/2017/08/08/ajax学习/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Ajax:Asynchroous JavaScript + XML,客户端和服务器的交互，能够向服务器请求额外的信息而不用卸载页面。 Ajax的技术核心是 XMLHttpRequest对象，以异步的方式从服务器获取信息，可以不必刷新页面也能取得数据。 XMLHttpRequest: var xhr = new XMLHttpRequese;  1.XMLHttpRrequestXHR用法1)准备">
-<meta property="og:updated_time" content="2017-08-12T14:08:16.000Z">
+<meta property="og:updated_time" content="2017-08-12T14:46:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ajax学习">
 <meta name="twitter:description" content="Ajax:Asynchroous JavaScript + XML,客户端和服务器的交互，能够向服务器请求额外的信息而不用卸载页面。 Ajax的技术核心是 XMLHttpRequest对象，以异步的方式从服务器获取信息，可以不必刷新页面也能取得数据。 XMLHttpRequest: var xhr = new XMLHttpRequese;  1.XMLHttpRrequestXHR用法1)准备">
@@ -305,10 +305,11 @@
 <h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><ul>
 <li>JSONP:JSON with padding(填充式JSON，参数式JSON)，包含在函数调用中的JSON。</li>
 <li><p>JSONP由两部分组成：回调函数和数据。</p>
-<pre><code>- 回调函数是响应到来时页面调用的函数。回调函数的名字一般在请求中指定。
--  数据：传入回调函数中的JSON数据。
-`http://url/json/?callback=handleResponse `
-</code></pre></li>
+<ul>
+<li>回调函数是响应到来时页面调用的函数。回调函数的名字一般在请求中指定。</li>
+<li>数据：传入回调函数中的JSON数据。<br><code>http://url/json/?callback=handleResponse</code></li>
+</ul>
+</li>
 <li><p>JSONP是通过动态<code>&lt;script&gt;</code>元素使用的，可以为src指定一个跨越的URL。</p>
 </li>
 <li>优点：可以直接访问服务器响应文本，支持服务器和客户端的双向通信。</li>

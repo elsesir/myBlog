@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
   <title>深入理解JavaScript | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.命名函数表达式 创建函数：1)函数表达式；2)函数声明。 函数声明一定要带标识符，无标识符的一定是函数表达式。 function FNAME(){} 作为赋值表达式的一部分–&amp;gt;函数表达式；在函数体内部或者在程序最上面–&amp;gt;函数声明。 （）：分组操作符，内部只包含表达式。   两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。 命名函数表达式使得">
+  <meta name="description" content="1.命名函数表达式1.创建函数：1)函数表达式；2)函数声明。  函数声明一定要带标识符，无标识符的一定是函数表达式。 function FNAME(){} 作为赋值表达式的一部分–&amp;gt;函数表达式；在函数体内部或者在程序最上面–&amp;gt;函数声明。 （）：分组操作符，内部只包含表达式。  2.两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。3.命名函数表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解JavaScript">
 <meta property="og:url" content="https://github.com/elsesir/myBlog/2017/06/29/深入理解javascript/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.命名函数表达式 创建函数：1)函数表达式；2)函数声明。 函数声明一定要带标识符，无标识符的一定是函数表达式。 function FNAME(){} 作为赋值表达式的一部分–&amp;gt;函数表达式；在函数体内部或者在程序最上面–&amp;gt;函数声明。 （）：分组操作符，内部只包含表达式。   两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。 命名函数表达式使得">
-<meta property="og:updated_time" content="2017-08-12T14:19:43.000Z">
+<meta property="og:description" content="1.命名函数表达式1.创建函数：1)函数表达式；2)函数声明。  函数声明一定要带标识符，无标识符的一定是函数表达式。 function FNAME(){} 作为赋值表达式的一部分–&amp;gt;函数表达式；在函数体内部或者在程序最上面–&amp;gt;函数声明。 （）：分组操作符，内部只包含表达式。  2.两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。3.命名函数表">
+<meta property="og:updated_time" content="2017-08-12T14:54:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解JavaScript">
-<meta name="twitter:description" content="1.命名函数表达式 创建函数：1)函数表达式；2)函数声明。 函数声明一定要带标识符，无标识符的一定是函数表达式。 function FNAME(){} 作为赋值表达式的一部分–&amp;gt;函数表达式；在函数体内部或者在程序最上面–&amp;gt;函数声明。 （）：分组操作符，内部只包含表达式。   两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。 命名函数表达式使得">
+<meta name="twitter:description" content="1.命名函数表达式1.创建函数：1)函数表达式；2)函数声明。  函数声明一定要带标识符，无标识符的一定是函数表达式。 function FNAME(){} 作为赋值表达式的一部分–&amp;gt;函数表达式；在函数体内部或者在程序最上面–&amp;gt;函数声明。 （）：分组操作符，内部只包含表达式。  2.两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。3.命名函数表">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -173,18 +173,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-命名函数表达式"><a href="#1-命名函数表达式" class="headerlink" title="1.命名函数表达式"></a>1.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/29/2290308.html" target="_blank" rel="external">命名函数表达式</a></h2><ol>
-<li>创建函数：1)函数表达式；2)函数声明。<ul>
+        <h2 id="1-命名函数表达式"><a href="#1-命名函数表达式" class="headerlink" title="1.命名函数表达式"></a>1.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/29/2290308.html" target="_blank" rel="external">命名函数表达式</a></h2><p>1.创建函数：1)函数表达式；2)函数声明。</p>
+<ul>
 <li><em>函数声明一定要带标识符</em>，无标识符的一定是函数表达式。</li>
 <li>function FNAME(){} 作为赋值表达式的一部分–&gt;函数表达式；在函数体内部或者在程序最上面–&gt;函数声明。</li>
 <li><strong>（）</strong>：分组操作符，内部只包含表达式。</li>
 </ul>
-</li>
-<li>两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。</li>
-<li><strong>命名函数表达式</strong>使得调试更加清楚。</li>
-<li>IE中相关bug：1）函数表达式标识符泄露到外作用域（已修复）；2）命名函数表达式同时被认为是函数申明和函数表达式；3）同时创建出两个不同的对象；4）顺序解析函数申明忽略条件语句</li>
-<li>bug解决：1）防范函数标识符进入外部作用域；2）永远不要引用作为函数名称的标识符，使用arguments.college；3）把命名函数表达式声明期间错误创建的函数清理干净，设置为null。</li>
-</ol>
+<p>2.两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。<br>3.<strong>命名函数表达式</strong>使得调试更加清楚。<br>4.IE中相关bug：1）函数表达式标识符泄露到外作用域（已修复）；2）命名函数表达式同时被认为是函数申明和函数表达式；3）同时创建出两个不同的对象；4）顺序解析函数申明忽略条件语句<br>5.bug解决：1）防范函数标识符进入外部作用域；2）永远不要引用作为函数名称的标识符，使用arguments.college；3）把命名函数表达式声明期间错误创建的函数清理干净，设置为null。</p>
 <h2 id="2-立即调用的函数表达式"><a href="#2-立即调用的函数表达式" class="headerlink" title="2.立即调用的函数表达式"></a>2.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/31/2289423.html" target="_blank" rel="external">立即调用的函数表达式</a></h2><p>立即调用/自执行</p>
 <ol>
 <li>函数(function)、括号(paren)、语法错误(SyntaxError)</li>
@@ -201,18 +196,15 @@
 </ul>
 </li>
 </ol>
-<h2 id="4-Module模式"><a href="#4-Module模式" class="headerlink" title="4.Module模式"></a>4.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/30/2288372.html" target="_blank" rel="external">Module模式</a></h2><ol>
-<li>基本用法</li>
-<li>匿名闭包</li>
-<li>扩展<ul>
+<h2 id="4-Module模式"><a href="#4-Module模式" class="headerlink" title="4.Module模式"></a>4.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/30/2288372.html" target="_blank" rel="external">Module模式</a></h2><p>1.基本用法</p>
+<p>2.匿名闭包</p>
+<p>3.扩展</p>
+<ul>
 <li>松耦合扩展 <code>(blogModule || {})</code><br>存在则直接使用，不存在则赋值为{}；<br>任意顺序的加载。</li>
-<li>紧耦合扩展；重载：保存原方法，再重绘</li>
+<li>紧耦合扩展；重载：保存原方法，再重绘<br>4.克隆与继承</li>
 </ul>
-</li>
-<li>克隆与继承</li>
-<li>跨文件贡献私有对象</li>
-<li>子模块</li>
-</ol>
+<p>5.跨文件贡献私有对象</p>
+<p>6.子模块</p>
 <h2 id="5-执行上下文"><a href="#5-执行上下文" class="headerlink" title="5.执行上下文"></a>5.<a href="http://www.cnblogs.com/TomXu/archive/2012/01/13/2308101.html" target="_blank" rel="external">执行上下文</a></h2>
       
 

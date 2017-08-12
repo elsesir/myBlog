@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://github.com/elsesir/myBlog/2017/08/12/使用github和hexo建立个人博客/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="参照简书：http://www.jianshu.com/p/5368aa49e193http://www.jianshu.com/p/465830080ea9http://blog.csdn.net/qq_31655965/article/details/53172143 前期准备：注册github,安装node.js/npm 安装hexosudo npm install -g hexo 在管理员">
-<meta property="og:updated_time" content="2017-08-12T14:32:36.000Z">
+<meta property="og:updated_time" content="2017-08-12T14:41:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Github和hexo建立个人博客">
 <meta name="twitter:description" content="参照简书：http://www.jianshu.com/p/5368aa49e193http://www.jianshu.com/p/465830080ea9http://blog.csdn.net/qq_31655965/article/details/53172143 前期准备：注册github,安装node.js/npm 安装hexosudo npm install -g hexo 在管理员">
@@ -197,24 +197,19 @@ hexo s  //部署到本地
 </ol>
 <p>在上传到GitHub之前一定要修改hexo配置文件！</p>
 <h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>配置文件在：hexo根目录下的_config.yml。</p>
-<ol>
-<li><p>修改文件最后的deploy：</p>
+<p>1) 修改文件最后的deploy：</p>
 <pre><code>deploy:
 type: git
 repository: https://github.com/elsesir/myBlog
 branch: master
-</code></pre></li>
-<li><p>因为不是在“用户名.github.io”，所以配置url和root：</p>
+</code></pre><p>2) 因为不是在“用户名.github.io”，所以配置url和root：</p>
 <pre><code>#如果是子目录，则将url设置到子目录，root设置为/子目录/
 url: https://github.com/elsesir/myBlog
 root: /myBlog/
-</code></pre></li>
-<li><p>修改主题文件的配置文件：在themes/yilia/_config.yml：</p>
+</code></pre><p>3）修改主题文件的配置文件：在themes/yilia/_config.yml：</p>
 <pre><code>#如果是子目录，则将url设置到子目录，root设置为/子目录/
 root: /myBlog/
-</code></pre></li>
-</ol>
-<p><strong>注意格式，不要忘记：之后的空格！</strong>      </p>
+</code></pre><p><strong>注意格式，不要忘记：之后的空格！</strong>      </p>
 <h4 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h4><pre><code>hexo clean  
 hexo g  
 hexo d  

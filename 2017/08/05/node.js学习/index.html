@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://github.com/elsesir/myBlog/2017/08/05/node.js学习/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="node.js node的亮点在于建设高性能，高扩展性地互联网应用，它能够处理庞大并高吞吐量的并发连接。 node.js只运行在一个单线程中，使用非阻塞的异步I/O调用，所有连接都由该线程处理。node.js 安装：   安装nvm(node的版本控制器node version manager,切换不同的Node版本)  curl -o- https://raw.githubusercontent">
-<meta property="og:updated_time" content="2017-08-12T14:21:05.000Z">
+<meta property="og:updated_time" content="2017-08-12T14:52:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js学习">
 <meta name="twitter:description" content="node.js node的亮点在于建设高性能，高扩展性地互联网应用，它能够处理庞大并高吞吐量的并发连接。 node.js只运行在一个单线程中，使用非阻塞的异步I/O调用，所有连接都由该线程处理。node.js 安装：   安装nvm(node的版本控制器node version manager,切换不同的Node版本)  curl -o- https://raw.githubusercontent">
@@ -210,22 +210,12 @@
 <li><a href="http://visionmedia.github.io/superagent/" target="_blank" rel="external">superagent</a>是HTTP方面的库，可以发起get/post请求。</li>
 <li><a href="https://github.com/cheeriojs/cheerio">cheerio</a>类似node版jquery,用以从网页中以css selector取数据。</li>
 </ol>
-<h2 id="使用eventproxy控制并发"><a href="#使用eventproxy控制并发" class="headerlink" title="使用eventproxy控制并发"></a>使用eventproxy控制并发</h2><ol>
-<li>体会node.js 的callback hell之美；学习使用eventproxy这一利器控制并发。使用到库：express/superagent/cheerio/eventproxy. </li>
-<li>cnodejs.org网站有并发连接数的限制，请求太快时会导致返回为空或报错。</li>
-<li>Node.js如何以单线程并发：<a href="http://book.douban.com/subject/25768396/" target="_blank" rel="external">《九浅一深Node.js》</a></li>
-<li>callback和promise、generator</li>
-<li><p>eventproxy起到类似计数器的作用，管理到底异步操作是否完成，完成后，自动调用处理函数，并将抓取到的数据当参数传递过来。使用：</p>
-<ul>
-<li>先<code>var ep = new eventproxy();</code>得到一个eventproxy实例；</li>
-<li>告诉它你要监听哪些事件，并给回调函数。<br><code>ep.all(&#39;event1&#39;,&#39;event2&#39;,function((result1,result2){})</code></li>
-<li>在适当的时候<code>em.emit(&#39;event_name&#39;,eventData)</code></li>
-</ul>
-</li>
-<li><p><a href="https://github.com/JacksonTian/eventproxy#%E9%87%8D%E5%A4%8D%E5%BC%82%E6%AD%A5%E5%8D%8F%E4%BD%9C">eventproxy 的 #after API</a></p>
-</li>
-<li>不过 <strong>js 这门语言</strong>本来就乱嘛，什么<a href="http://www.cnblogs.com/damonlan/archive/2012/07/01/2553425.html" target="_blank" rel="external">变量提升</a>啊，没有 main 函数啊，变量作用域啊，数据类型常常简单得只有数字、字符串、哈希、数组啊，这一系列的问题，都不是事儿。</li>
-</ol>
+<h2 id="使用eventproxy控制并发"><a href="#使用eventproxy控制并发" class="headerlink" title="使用eventproxy控制并发"></a>使用eventproxy控制并发</h2><p>1.体会node.js 的callback hell之美；学习使用eventproxy这一利器控制并发。使用到库：express/superagent/cheerio/eventproxy.<br>2.cnodejs.org网站有并发连接数的限制，请求太快时会导致返回为空或报错。<br>3.Node.js如何以单线程并发：<a href="http://book.douban.com/subject/25768396/" target="_blank" rel="external">《九浅一深Node.js》</a><br>4.callback和promise、generator<br>5.eventproxy起到类似计数器的作用，管理到底异步操作是否完成，完成后，自动调用处理函数，并将抓取到的数据当参数传递过来。使用：</p>
+<pre><code>- 先`var ep = new eventproxy();`得到一个eventproxy实例；
+- 告诉它你要监听哪些事件，并给回调函数。
+`ep.all(&apos;event1&apos;,&apos;event2&apos;,function((result1,result2){})`
+- 在适当的时候`em.emit(&apos;event_name&apos;,eventData)`
+</code></pre><p>6.<a href="https://github.com/JacksonTian/eventproxy#%E9%87%8D%E5%A4%8D%E5%BC%82%E6%AD%A5%E5%8D%8F%E4%BD%9C">eventproxy 的 #after API</a><br>7.不过 <strong>js 这门语言</strong>本来就乱嘛，什么<a href="http://www.cnblogs.com/damonlan/archive/2012/07/01/2553425.html" target="_blank" rel="external">变量提升</a>啊，没有 main 函数啊，变量作用域啊，数据类型常常简单得只有数字、字符串、哈希、数组啊，这一系列的问题，都不是事儿。</p>
 <h2 id="使用async控制并发"><a href="#使用async控制并发" class="headerlink" title="使用async控制并发"></a>使用async控制并发</h2><ol>
 <li>学习async的使用；学习async来控制并发连接数。</li>
 <li>async的 mapLimit(arr, limit, iterator, callback)接口。queue(worker, concurrency)–并发连接数控制</li>
@@ -240,35 +230,27 @@
 <li>should:断言库，在测试文件中：<code>main.fibonacci(0).should.equal(0)</code>;</li>
 <li>istanbul: <code>instanbul cover _mocha</code>;<code>open coverage/lcon-report/index.html</code>;</li>
 <li>mocha 和 istanbul 无缝结合，只要mocha可以，istanbu就接的进来。</li>
-<li><p>mocha 和 istanbul的版本问题：<code>npm intall mocha --save-dev(安装特定版本的mocha)</code>;<code>./node_modules/.bin/mocha</code>用该版本测试。–简化：引入<a href="http://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="external">Makefile</a>记住复杂的配置：</p>
-<pre><code>- test:
-./node_modules/.bin/mocha
-
-cov test-cov:
-./node_modules/.bin/istanbul cover _mocha
-
-.PHONY: test cov test-cov
-</code></pre><p> 用<code>make test</code> 或 <code>make cov</code></p>
-</li>
+<li>mocha 和 istanbul的版本问题：<code>npm intall mocha --save-dev(安装特定版本的mocha)</code>;<code>./node_modules/.bin/mocha</code>用该版本测试。–简化：引入<a href="http://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="external">Makefile</a>记住复杂的配置：</li>
 </ol>
-<h2 id="作用域与闭包：this-var-function"><a href="#作用域与闭包：this-var-function" class="headerlink" title="作用域与闭包：this,var,(function(){})"></a>作用域与闭包：this,var,(function(){})</h2><ol>
-<li>理解JS中var的作用域；了解闭包的概念；理解this的指向。</li>
-<li>var作用域：在整个函数中都有定义，但外部函数对内部函数定义的变量调用报错；</li>
-<li>闭包：使内部函数可以访问定义在外部函数的变量。</li>
-<li>this:this总指向调用该函数的对象。<ul>
+<pre><code>   test:
+   ./node_modules/.bin/mocha
+
+   cov test-cov:
+   ./node_modules/.bin/istanbul cover _mocha
+
+   .PHONY: test cov test-cov
+用`make test` 或 `make cov`
+</code></pre><h2 id="作用域与闭包：this-var-function"><a href="#作用域与闭包：this-var-function" class="headerlink" title="作用域与闭包：this,var,(function(){})"></a>作用域与闭包：this,var,(function(){})</h2><p>1.理解JS中var的作用域；了解闭包的概念；理解this的指向。<br>2.var作用域：在整个函数中都有定义，但外部函数对内部函数定义的变量调用报错；<br>3.闭包：使内部函数可以访问定义在外部函数的变量。<br>4.this:this总指向调用该函数的对象。</p>
+<ul>
 <li>有对象就指向调用对象；</li>
 <li>没有对象指向全局对象；</li>
 <li>用new构造的指向新对象；</li>
-<li>通过apply/call/bind来改变this指向。<br><em>在js 中，构造函数、普通函数、对象方法、闭包，没有明确界限。</em>    </li>
+<li>通过apply/call/bind来改变this指向。<br><em>在js 中，构造函数、普通函数、对象方法、闭包，没有明确界限。</em>  </li>
 </ul>
-</li>
-<li>apply和call调用以及bind绑定：指向绑定对象<ul>
-<li>apply()方法接受两个参数第一个是函数运行的作用域，另一个是参数数组(arguments).</li>
-<li>call()方法第一个参数也是函数运行作用域，其他参数是需要一个个列举出来。</li>
-</ul>
-</li>
-</ol>
-<h2 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h2><ol>
+<p>5.apply和call调用以及bind绑定：指向绑定对象</p>
+<pre><code>- apply()方法接受两个参数第一个是函数运行的作用域，另一个是参数数组(arguments).
+ - call()方法第一个参数也是函数运行作用域，其他参数是需要一个个列举出来。
+</code></pre><h2 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h2><ol>
 <li>pm2是一个带负载均衡功能的Node应用进程管理器。适合laaS结构（基础架构即服务）(<a href="http://cloud.51cto.com/art/201107/278903.htm" target="_blank" rel="external">SaaS/PaaS/laaS的区别</a>)</li>
 <li>命令<ul>
 <li>开始：<code>pm2 start app.js</code></li>

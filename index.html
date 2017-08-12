@@ -195,24 +195,19 @@ hexo s  //部署到本地
 </ol>
 <p>在上传到GitHub之前一定要修改hexo配置文件！</p>
 <h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>配置文件在：hexo根目录下的_config.yml。</p>
-<ol>
-<li><p>修改文件最后的deploy：</p>
+<p>1) 修改文件最后的deploy：</p>
 <pre><code>deploy:
 type: git
 repository: https://github.com/elsesir/myBlog
 branch: master
-</code></pre></li>
-<li><p>因为不是在“用户名.github.io”，所以配置url和root：</p>
+</code></pre><p>2) 因为不是在“用户名.github.io”，所以配置url和root：</p>
 <pre><code>#如果是子目录，则将url设置到子目录，root设置为/子目录/
 url: https://github.com/elsesir/myBlog
 root: /myBlog/
-</code></pre></li>
-<li><p>修改主题文件的配置文件：在themes/yilia/_config.yml：</p>
+</code></pre><p>3）修改主题文件的配置文件：在themes/yilia/_config.yml：</p>
 <pre><code>#如果是子目录，则将url设置到子目录，root设置为/子目录/
 root: /myBlog/
-</code></pre></li>
-</ol>
-<p><strong>注意格式，不要忘记：之后的空格！</strong>      </p>
+</code></pre><p><strong>注意格式，不要忘记：之后的空格！</strong>      </p>
 <h4 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h4><pre><code>hexo clean  
 hexo g  
 hexo d  
@@ -285,7 +280,8 @@ hexo d
 <p>异步模式编程的4种方法。</p>
 <h3 id="1-回调函数"><a href="#1-回调函数" class="headerlink" title="1.回调函数"></a>1.回调函数</h3><ul>
 <li>优点：简单、容易理解和部署。</li>
-<li><p>缺点：不利于代码的阅读和维护，各部分之间高度耦合，且每个任务只能指定一个回调函数。</p>
+<li>缺点：不利于代码的阅读和维护，各部分之间高度耦合，且每个任务只能指定一个回调函数。 </li>
+</ul>
 <pre><code>function f1(callback) {
     setTimeout(function () {
        // f1的任务代码
@@ -293,10 +289,9 @@ hexo d
     }, 1000);
 }
 f1(f2); 
-</code></pre></li>
+</code></pre><h3 id="2-事件监听"><a href="#2-事件监听" class="headerlink" title="2.事件监听"></a>2.事件监听</h3><ul>
+<li>采用事件驱动模式，任务执行不取决于代码的顺序，而取决于某个事件是否发生。</li>
 </ul>
-<h3 id="2-事件监听"><a href="#2-事件监听" class="headerlink" title="2.事件监听"></a>2.事件监听</h3><ul>
-<li><p>采用事件驱动模式，任务执行不取决于代码的顺序，而取决于某个事件是否发生。</p>
 <pre><code>function f1() {
      setTimeout(function(){
           //f2的任务代码
@@ -304,14 +299,14 @@ f1(f2);
      },1000);
 }
 f1.on(&apos;done&apos;,f2);//为f1绑定事件，发生done时，执行f2
-</code></pre></li>
-<li><p>优点： 容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，可以去耦合，有利于实现模块化。</p>
-</li>
+</code></pre><ul>
+<li>优点： 容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，可以去耦合，有利于实现模块化。</li>
 <li>缺点：整个程序都要变成事件驱动型，运行流程不够清晰。</li>
 </ul>
 <h3 id="3-发布-订阅（观察者模式）"><a href="#3-发布-订阅（观察者模式）" class="headerlink" title="3.发布/订阅（观察者模式）"></a>3.发布/订阅（观察者模式）</h3><ul>
 <li>发布订阅模式（publish-subscribe pattern），又称观察者模式（observer pattern）：存在一个信号中心，某个任务执行完成，就向信号中心发布一个信号，其他人物可以向信号中心订阅这个信号，从而知道自己什么时候可以执行。</li>
-<li><p>jQuery插件Tiny Pub/Sub实现。</p>
+<li>jQuery插件Tiny Pub/Sub实现。</li>
+</ul>
 <pre><code>jQuery.subscribe(&quot;done&quot;,f2);//f2订阅done信号
 function f1() {
     setTimeout( function () {
@@ -320,12 +315,12 @@ function f1() {
     },1000);
 }
 jQuery.unsubscribe(&quot;done&quot;,f2);//取消订阅
-</code></pre></li>
-<li><p>优点：类似事件监听，但可以通过查看消息中心，了解存在多少信号、每个信号有多少订阅者，从而监控程序运行。</p>
-</li>
+</code></pre><ul>
+<li>优点：类似事件监听，但可以通过查看消息中心，了解存在多少信号、每个信号有多少订阅者，从而监控程序运行。</li>
 </ul>
 <h3 id="4-Promises对象"><a href="#4-Promises对象" class="headerlink" title="4.Promises对象"></a>4.Promises对象</h3><ul>
-<li><p>Promises对象是CommonJS工作组提出的一种规范，目的是为了异步编程提供统一接口。每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。</p>
+<li>Promises对象是CommonJS工作组提出的一种规范，目的是为了异步编程提供统一接口。每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。</li>
+</ul>
 <pre><code>function f1() {
      var dfd = $.Deferred();
      setTimeout(function (){
@@ -335,9 +330,9 @@ jQuery.unsubscribe(&quot;done&quot;,f2);//取消订阅
      return ddfd.promise;
 }
 f1().then(f2);
-</code></pre></li>
-<li><p>优点：回调函数变成了链式写法，程序流程可以看得很清楚，而且有一整套的匹配方法。<br>   <code>f1().then(f2).fail(f3);</code><br>   编写和理解比较困难。</p>
-</li>
+</code></pre><ul>
+<li>优点：回调函数变成了链式写法，程序流程可以看得很清楚，而且有一整套的匹配方法。<br>   <code>f1().then(f2).fail(f3);</code></li>
+<li>缺点：编写和理解比较困难。</li>
 </ul>
 
       
@@ -617,10 +612,11 @@ f1().then(f2);
 <h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><ul>
 <li>JSONP:JSON with padding(填充式JSON，参数式JSON)，包含在函数调用中的JSON。</li>
 <li><p>JSONP由两部分组成：回调函数和数据。</p>
-<pre><code>- 回调函数是响应到来时页面调用的函数。回调函数的名字一般在请求中指定。
--  数据：传入回调函数中的JSON数据。
-`http://url/json/?callback=handleResponse `
-</code></pre></li>
+<ul>
+<li>回调函数是响应到来时页面调用的函数。回调函数的名字一般在请求中指定。</li>
+<li>数据：传入回调函数中的JSON数据。<br><code>http://url/json/?callback=handleResponse</code></li>
+</ul>
+</li>
 <li><p>JSONP是通过动态<code>&lt;script&gt;</code>元素使用的，可以为src指定一个跨越的URL。</p>
 </li>
 <li>优点：可以直接访问服务器响应文本，支持服务器和客户端的双向通信。</li>
@@ -709,8 +705,7 @@ f1().then(f2);
 </ul>
 <h5 id="窗口位置"><a href="#窗口位置" class="headerlink" title="窗口位置"></a>窗口位置</h5><ul>
 <li>确定和修改window对象位置：screenLeft/screenTop||screenX/screenY.</li>
-<li>screenLeft:IE/Opera=位于页面可见区域上方浏览器工具栏的高度。<pre><code>Chrome/firefox/safari=整个浏览器窗口相对于屏幕的坐标值。
-</code></pre></li>
+<li>screenLeft:IE/Opera=位于页面可见区域上方浏览器工具栏的高度。<br> Chrome/firefox/safari=整个浏览器窗口相对于屏幕的坐标值。</li>
 <li>只对最外层的window有用，不适用于框架。</li>
 <li>moveTo()/moveBy()</li>
 </ul>
@@ -888,22 +883,12 @@ f1().then(f2);
 <li><a href="http://visionmedia.github.io/superagent/" target="_blank" rel="external">superagent</a>是HTTP方面的库，可以发起get/post请求。</li>
 <li><a href="https://github.com/cheeriojs/cheerio">cheerio</a>类似node版jquery,用以从网页中以css selector取数据。</li>
 </ol>
-<h2 id="使用eventproxy控制并发"><a href="#使用eventproxy控制并发" class="headerlink" title="使用eventproxy控制并发"></a>使用eventproxy控制并发</h2><ol>
-<li>体会node.js 的callback hell之美；学习使用eventproxy这一利器控制并发。使用到库：express/superagent/cheerio/eventproxy. </li>
-<li>cnodejs.org网站有并发连接数的限制，请求太快时会导致返回为空或报错。</li>
-<li>Node.js如何以单线程并发：<a href="http://book.douban.com/subject/25768396/" target="_blank" rel="external">《九浅一深Node.js》</a></li>
-<li>callback和promise、generator</li>
-<li><p>eventproxy起到类似计数器的作用，管理到底异步操作是否完成，完成后，自动调用处理函数，并将抓取到的数据当参数传递过来。使用：</p>
-<ul>
-<li>先<code>var ep = new eventproxy();</code>得到一个eventproxy实例；</li>
-<li>告诉它你要监听哪些事件，并给回调函数。<br><code>ep.all(&#39;event1&#39;,&#39;event2&#39;,function((result1,result2){})</code></li>
-<li>在适当的时候<code>em.emit(&#39;event_name&#39;,eventData)</code></li>
-</ul>
-</li>
-<li><p><a href="https://github.com/JacksonTian/eventproxy#%E9%87%8D%E5%A4%8D%E5%BC%82%E6%AD%A5%E5%8D%8F%E4%BD%9C">eventproxy 的 #after API</a></p>
-</li>
-<li>不过 <strong>js 这门语言</strong>本来就乱嘛，什么<a href="http://www.cnblogs.com/damonlan/archive/2012/07/01/2553425.html" target="_blank" rel="external">变量提升</a>啊，没有 main 函数啊，变量作用域啊，数据类型常常简单得只有数字、字符串、哈希、数组啊，这一系列的问题，都不是事儿。</li>
-</ol>
+<h2 id="使用eventproxy控制并发"><a href="#使用eventproxy控制并发" class="headerlink" title="使用eventproxy控制并发"></a>使用eventproxy控制并发</h2><p>1.体会node.js 的callback hell之美；学习使用eventproxy这一利器控制并发。使用到库：express/superagent/cheerio/eventproxy.<br>2.cnodejs.org网站有并发连接数的限制，请求太快时会导致返回为空或报错。<br>3.Node.js如何以单线程并发：<a href="http://book.douban.com/subject/25768396/" target="_blank" rel="external">《九浅一深Node.js》</a><br>4.callback和promise、generator<br>5.eventproxy起到类似计数器的作用，管理到底异步操作是否完成，完成后，自动调用处理函数，并将抓取到的数据当参数传递过来。使用：</p>
+<pre><code>- 先`var ep = new eventproxy();`得到一个eventproxy实例；
+- 告诉它你要监听哪些事件，并给回调函数。
+`ep.all(&apos;event1&apos;,&apos;event2&apos;,function((result1,result2){})`
+- 在适当的时候`em.emit(&apos;event_name&apos;,eventData)`
+</code></pre><p>6.<a href="https://github.com/JacksonTian/eventproxy#%E9%87%8D%E5%A4%8D%E5%BC%82%E6%AD%A5%E5%8D%8F%E4%BD%9C">eventproxy 的 #after API</a><br>7.不过 <strong>js 这门语言</strong>本来就乱嘛，什么<a href="http://www.cnblogs.com/damonlan/archive/2012/07/01/2553425.html" target="_blank" rel="external">变量提升</a>啊，没有 main 函数啊，变量作用域啊，数据类型常常简单得只有数字、字符串、哈希、数组啊，这一系列的问题，都不是事儿。</p>
 <h2 id="使用async控制并发"><a href="#使用async控制并发" class="headerlink" title="使用async控制并发"></a>使用async控制并发</h2><ol>
 <li>学习async的使用；学习async来控制并发连接数。</li>
 <li>async的 mapLimit(arr, limit, iterator, callback)接口。queue(worker, concurrency)–并发连接数控制</li>
@@ -918,35 +903,27 @@ f1().then(f2);
 <li>should:断言库，在测试文件中：<code>main.fibonacci(0).should.equal(0)</code>;</li>
 <li>istanbul: <code>instanbul cover _mocha</code>;<code>open coverage/lcon-report/index.html</code>;</li>
 <li>mocha 和 istanbul 无缝结合，只要mocha可以，istanbu就接的进来。</li>
-<li><p>mocha 和 istanbul的版本问题：<code>npm intall mocha --save-dev(安装特定版本的mocha)</code>;<code>./node_modules/.bin/mocha</code>用该版本测试。–简化：引入<a href="http://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="external">Makefile</a>记住复杂的配置：</p>
-<pre><code>- test:
-./node_modules/.bin/mocha
-
-cov test-cov:
-./node_modules/.bin/istanbul cover _mocha
-
-.PHONY: test cov test-cov
-</code></pre><p> 用<code>make test</code> 或 <code>make cov</code></p>
-</li>
+<li>mocha 和 istanbul的版本问题：<code>npm intall mocha --save-dev(安装特定版本的mocha)</code>;<code>./node_modules/.bin/mocha</code>用该版本测试。–简化：引入<a href="http://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="external">Makefile</a>记住复杂的配置：</li>
 </ol>
-<h2 id="作用域与闭包：this-var-function"><a href="#作用域与闭包：this-var-function" class="headerlink" title="作用域与闭包：this,var,(function(){})"></a>作用域与闭包：this,var,(function(){})</h2><ol>
-<li>理解JS中var的作用域；了解闭包的概念；理解this的指向。</li>
-<li>var作用域：在整个函数中都有定义，但外部函数对内部函数定义的变量调用报错；</li>
-<li>闭包：使内部函数可以访问定义在外部函数的变量。</li>
-<li>this:this总指向调用该函数的对象。<ul>
+<pre><code>   test:
+   ./node_modules/.bin/mocha
+
+   cov test-cov:
+   ./node_modules/.bin/istanbul cover _mocha
+
+   .PHONY: test cov test-cov
+用`make test` 或 `make cov`
+</code></pre><h2 id="作用域与闭包：this-var-function"><a href="#作用域与闭包：this-var-function" class="headerlink" title="作用域与闭包：this,var,(function(){})"></a>作用域与闭包：this,var,(function(){})</h2><p>1.理解JS中var的作用域；了解闭包的概念；理解this的指向。<br>2.var作用域：在整个函数中都有定义，但外部函数对内部函数定义的变量调用报错；<br>3.闭包：使内部函数可以访问定义在外部函数的变量。<br>4.this:this总指向调用该函数的对象。</p>
+<ul>
 <li>有对象就指向调用对象；</li>
 <li>没有对象指向全局对象；</li>
 <li>用new构造的指向新对象；</li>
-<li>通过apply/call/bind来改变this指向。<br><em>在js 中，构造函数、普通函数、对象方法、闭包，没有明确界限。</em>    </li>
+<li>通过apply/call/bind来改变this指向。<br><em>在js 中，构造函数、普通函数、对象方法、闭包，没有明确界限。</em>  </li>
 </ul>
-</li>
-<li>apply和call调用以及bind绑定：指向绑定对象<ul>
-<li>apply()方法接受两个参数第一个是函数运行的作用域，另一个是参数数组(arguments).</li>
-<li>call()方法第一个参数也是函数运行作用域，其他参数是需要一个个列举出来。</li>
-</ul>
-</li>
-</ol>
-<h2 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h2><ol>
+<p>5.apply和call调用以及bind绑定：指向绑定对象</p>
+<pre><code>- apply()方法接受两个参数第一个是函数运行的作用域，另一个是参数数组(arguments).
+ - call()方法第一个参数也是函数运行作用域，其他参数是需要一个个列举出来。
+</code></pre><h2 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h2><ol>
 <li>pm2是一个带负载均衡功能的Node应用进程管理器。适合laaS结构（基础架构即服务）(<a href="http://cloud.51cto.com/art/201107/278903.htm" target="_blank" rel="external">SaaS/PaaS/laaS的区别</a>)</li>
 <li>命令<ul>
 <li>开始：<code>pm2 start app.js</code></li>
@@ -1136,18 +1113,13 @@ cov test-cov:
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-命名函数表达式"><a href="#1-命名函数表达式" class="headerlink" title="1.命名函数表达式"></a>1.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/29/2290308.html" target="_blank" rel="external">命名函数表达式</a></h2><ol>
-<li>创建函数：1)函数表达式；2)函数声明。<ul>
+        <h2 id="1-命名函数表达式"><a href="#1-命名函数表达式" class="headerlink" title="1.命名函数表达式"></a>1.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/29/2290308.html" target="_blank" rel="external">命名函数表达式</a></h2><p>1.创建函数：1)函数表达式；2)函数声明。</p>
+<ul>
 <li><em>函数声明一定要带标识符</em>，无标识符的一定是函数表达式。</li>
 <li>function FNAME(){} 作为赋值表达式的一部分–&gt;函数表达式；在函数体内部或者在程序最上面–&gt;函数声明。</li>
 <li><strong>（）</strong>：分组操作符，内部只包含表达式。</li>
 </ul>
-</li>
-<li>两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。</li>
-<li><strong>命名函数表达式</strong>使得调试更加清楚。</li>
-<li>IE中相关bug：1）函数表达式标识符泄露到外作用域（已修复）；2）命名函数表达式同时被认为是函数申明和函数表达式；3）同时创建出两个不同的对象；4）顺序解析函数申明忽略条件语句</li>
-<li>bug解决：1）防范函数标识符进入外部作用域；2）永远不要引用作为函数名称的标识符，使用arguments.college；3）把命名函数表达式声明期间错误创建的函数清理干净，设置为null。</li>
-</ol>
+<p>2.两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。<br>3.<strong>命名函数表达式</strong>使得调试更加清楚。<br>4.IE中相关bug：1）函数表达式标识符泄露到外作用域（已修复）；2）命名函数表达式同时被认为是函数申明和函数表达式；3）同时创建出两个不同的对象；4）顺序解析函数申明忽略条件语句<br>5.bug解决：1）防范函数标识符进入外部作用域；2）永远不要引用作为函数名称的标识符，使用arguments.college；3）把命名函数表达式声明期间错误创建的函数清理干净，设置为null。</p>
 <h2 id="2-立即调用的函数表达式"><a href="#2-立即调用的函数表达式" class="headerlink" title="2.立即调用的函数表达式"></a>2.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/31/2289423.html" target="_blank" rel="external">立即调用的函数表达式</a></h2><p>立即调用/自执行</p>
 <ol>
 <li>函数(function)、括号(paren)、语法错误(SyntaxError)</li>
@@ -1164,18 +1136,15 @@ cov test-cov:
 </ul>
 </li>
 </ol>
-<h2 id="4-Module模式"><a href="#4-Module模式" class="headerlink" title="4.Module模式"></a>4.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/30/2288372.html" target="_blank" rel="external">Module模式</a></h2><ol>
-<li>基本用法</li>
-<li>匿名闭包</li>
-<li>扩展<ul>
+<h2 id="4-Module模式"><a href="#4-Module模式" class="headerlink" title="4.Module模式"></a>4.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/30/2288372.html" target="_blank" rel="external">Module模式</a></h2><p>1.基本用法</p>
+<p>2.匿名闭包</p>
+<p>3.扩展</p>
+<ul>
 <li>松耦合扩展 <code>(blogModule || {})</code><br>存在则直接使用，不存在则赋值为{}；<br>任意顺序的加载。</li>
-<li>紧耦合扩展；重载：保存原方法，再重绘</li>
+<li>紧耦合扩展；重载：保存原方法，再重绘<br>4.克隆与继承</li>
 </ul>
-</li>
-<li>克隆与继承</li>
-<li>跨文件贡献私有对象</li>
-<li>子模块</li>
-</ol>
+<p>5.跨文件贡献私有对象</p>
+<p>6.子模块</p>
 <h2 id="5-执行上下文"><a href="#5-执行上下文" class="headerlink" title="5.执行上下文"></a>5.<a href="http://www.cnblogs.com/TomXu/archive/2012/01/13/2308101.html" target="_blank" rel="external">执行上下文</a></h2>
       
 

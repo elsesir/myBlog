@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
   <title>JavaScript四种跨域方式 | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="同源策略：同协议、同端口、同域。 1.JSONP&amp;lt;script&amp;gt;标签是不受同源策略的限制的，可以载入任何地方的javascript文件。JSONP的理念：和服务器约定好了一个函数名，当请求文件时，服务器返回一段jacascript，这段js调用约定好的函数，并将数据作为参数传入。-只适用get请求。 2.document.domain 使用条件：有其他页面window对象的引用；二级域">
+  <meta name="description" content="同源策略：同协议、同端口、同域。">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript四种跨域方式">
 <meta property="og:url" content="https://github.com/elsesir/myBlog/2017/08/11/javascript四种跨域方式/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="同源策略：同协议、同端口、同域。 1.JSONP&amp;lt;script&amp;gt;标签是不受同源策略的限制的，可以载入任何地方的javascript文件。JSONP的理念：和服务器约定好了一个函数名，当请求文件时，服务器返回一段jacascript，这段js调用约定好的函数，并将数据作为参数传入。-只适用get请求。 2.document.domain 使用条件：有其他页面window对象的引用；二级域">
-<meta property="og:updated_time" content="2017-08-12T11:08:59.000Z">
+<meta property="og:description" content="同源策略：同协议、同端口、同域。">
+<meta property="og:updated_time" content="2017-08-12T19:10:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript四种跨域方式">
-<meta name="twitter:description" content="同源策略：同协议、同端口、同域。 1.JSONP&amp;lt;script&amp;gt;标签是不受同源策略的限制的，可以载入任何地方的javascript文件。JSONP的理念：和服务器约定好了一个函数名，当请求文件时，服务器返回一段jacascript，这段js调用约定好的函数，并将数据作为参数传入。-只适用get请求。 2.document.domain 使用条件：有其他页面window对象的引用；二级域">
+<meta name="twitter:description" content="同源策略：同协议、同端口、同域。">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -80,7 +81,7 @@
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="/myBlog/shenase@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -119,7 +120,7 @@
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="/myBlog/shenase@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -165,7 +166,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>同源策略：同协议、同端口、同域。</p>
+        <p>同源策略：同协议、同端口、同域。<br><a id="more"></a></p>
 <h3 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1.JSONP"></a>1.JSONP</h3><p><code>&lt;script&gt;</code>标签是不受同源策略的限制的，可以载入任何地方的javascript文件。<br>JSONP的理念：和服务器约定好了一个函数名，当请求文件时，服务器返回一段jacascript，这段js调用约定好的函数，并将数据作为参数传入。<br>-只适用get请求。</p>
 <h3 id="2-document-domain"><a href="#2-document-domain" class="headerlink" title="2.document.domain"></a>2.document.domain</h3><ul>
 <li>使用条件：有其他页面window对象的引用；二级域名相同；协议相同；端口相同。</li>
@@ -216,6 +217,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -310,19 +322,6 @@
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-JSONP"><span class="toc-number">1.</span> <span class="toc-text">1.JSONP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-document-domain"><span class="toc-number">2.</span> <span class="toc-text">2.document.domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-window-name"><span class="toc-number">3.</span> <span class="toc-text">3.window.name</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-postMessage"><span class="toc-number">4.</span> <span class="toc-text">4. postMessage</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>
@@ -424,7 +423,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">...</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">不算新嫩的前端新人</div>
   	  	
     	</section>
     

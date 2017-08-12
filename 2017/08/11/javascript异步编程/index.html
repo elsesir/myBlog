@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
   <title>JavaScript异步编程 | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考JavaScript异步编程 JavaScript语言执行环境是“单线程”(single thread).Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous). 异步模式编程的4种方法。 1.回调函数 优点：简单、容易理解和部署。 缺点：不利于代码的阅读和维护，各部分之间高度耦合，且每个任务只能指定一个回调函数。   function f1(callba">
+  <meta name="description" content="参考JavaScript异步编程 JavaScript语言执行环境是“单线程”(single thread).Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous). 异步模式编程的4种方法。">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript异步编程">
 <meta property="og:url" content="https://github.com/elsesir/myBlog/2017/08/11/javascript异步编程/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="参考JavaScript异步编程 JavaScript语言执行环境是“单线程”(single thread).Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous). 异步模式编程的4种方法。 1.回调函数 优点：简单、容易理解和部署。 缺点：不利于代码的阅读和维护，各部分之间高度耦合，且每个任务只能指定一个回调函数。   function f1(callba">
-<meta property="og:updated_time" content="2017-08-12T14:45:46.000Z">
+<meta property="og:description" content="参考JavaScript异步编程 JavaScript语言执行环境是“单线程”(single thread).Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous). 异步模式编程的4种方法。">
+<meta property="og:updated_time" content="2017-08-12T19:11:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript异步编程">
-<meta name="twitter:description" content="参考JavaScript异步编程 JavaScript语言执行环境是“单线程”(single thread).Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous). 异步模式编程的4种方法。 1.回调函数 优点：简单、容易理解和部署。 缺点：不利于代码的阅读和维护，各部分之间高度耦合，且每个任务只能指定一个回调函数。   function f1(callba">
+<meta name="twitter:description" content="参考JavaScript异步编程 JavaScript语言执行环境是“单线程”(single thread).Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous). 异步模式编程的4种方法。">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -80,7 +81,7 @@
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="/myBlog/shenase@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -119,7 +120,7 @@
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="/myBlog/shenase@foxmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -168,6 +169,7 @@
         <p>参考<a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="external">JavaScript异步编程</a></p>
 <p>JavaScript语言执行环境是“单线程”(single thread).<br>Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous).</p>
 <p>异步模式编程的4种方法。</p>
+<a id="more"></a>
 <h3 id="1-回调函数"><a href="#1-回调函数" class="headerlink" title="1.回调函数"></a>1.回调函数</h3><ul>
 <li>优点：简单、容易理解和部署。</li>
 <li>缺点：不利于代码的阅读和维护，各部分之间高度耦合，且每个任务只能指定一个回调函数。 </li>
@@ -253,6 +255,17 @@ f1().then(f2);
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -347,19 +360,6 @@ f1().then(f2);
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-回调函数"><span class="toc-number">1.</span> <span class="toc-text">1.回调函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-事件监听"><span class="toc-number">2.</span> <span class="toc-text">2.事件监听</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-发布-订阅（观察者模式）"><span class="toc-number">3.</span> <span class="toc-text">3.发布/订阅（观察者模式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Promises对象"><span class="toc-number">4.</span> <span class="toc-text">4.Promises对象</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>
@@ -461,7 +461,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">...</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">不算新嫩的前端新人</div>
   	  	
     	</section>
     

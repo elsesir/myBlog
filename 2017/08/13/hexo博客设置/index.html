@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
   <title>hexo静态博客各种设置 | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考：搭建Hexo博客进阶篇-hexo文档讲解搭建Hexo博客进阶篇–Hexo文档讲解（二） 按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。 hexo文件夹目录当安装好hexo 后；可以看到在原来的文件夹内，出现了如下文件：.├── .deplou_git   //├── node_m">
+  <meta name="description" content="参考：搭建Hexo博客进阶篇-hexo文档讲解搭建Hexo博客进阶篇–Hexo文档讲解（二）    按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。">
 <meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo静态博客各种设置">
 <meta property="og:url" content="https://github.com/elsesir/myBlog/2017/08/13/hexo博客设置/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="参考：搭建Hexo博客进阶篇-hexo文档讲解搭建Hexo博客进阶篇–Hexo文档讲解（二） 按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。 hexo文件夹目录当安装好hexo 后；可以看到在原来的文件夹内，出现了如下文件：.├── .deplou_git   //├── node_m">
+<meta property="og:description" content="参考：搭建Hexo博客进阶篇-hexo文档讲解搭建Hexo博客进阶篇–Hexo文档讲解（二）    按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-13T09:10:32.000Z">
+<meta property="og:updated_time" content="2017-08-13T09:34:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo静态博客各种设置">
-<meta name="twitter:description" content="参考：搭建Hexo博客进阶篇-hexo文档讲解搭建Hexo博客进阶篇–Hexo文档讲解（二） 按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。 hexo文件夹目录当安装好hexo 后；可以看到在原来的文件夹内，出现了如下文件：.├── .deplou_git   //├── node_m">
+<meta name="twitter:description" content="参考：搭建Hexo博客进阶篇-hexo文档讲解搭建Hexo博客进阶篇–Hexo文档讲解（二）    按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -168,9 +168,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>参考：<a href="https://segmentfault.com/a/1190000009477390" target="_blank" rel="external">搭建Hexo博客进阶篇-hexo文档讲解</a><br><a href="https://segmentfault.com/a/1190000009478129" target="_blank" rel="external">搭建Hexo博客进阶篇–Hexo文档讲解（二）</a></p>
-<p>按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。</p>
-<h2 id="hexo文件夹目录"><a href="#hexo文件夹目录" class="headerlink" title="hexo文件夹目录"></a>hexo文件夹目录</h2><p>当安装好hexo 后；可以看到在原来的文件夹内，出现了如下文件：<br>.<br>├── .deplou_git   //<br>├── node_modules  //根据package.json自动安装的HEXO项目依赖<br>├── public        //最终生成的站点文件，html/css文件等<br>├── scaffolds     //模板文件夹，根据md文件生成博客网页文章的模板<br>|   ├──post.md    //文章模板<br>|   ├──draft.md   //<br>|   └──page.md<br>├── source        //资源文件夹，<br>|   ├── _drafts   //草稿，不可访问的文件<br>|   └── _posts    //存放.md的博客文件<br>├── themes        // 主题文件夹。Hexo会根据主题来生成静态页面<br>|   ├── landscape<br>|   └── yilia     //yilia主题文件<br>├── _config.yml   //这里是网站的配置信息<br>└── package.json  //HEXO项目依赖</p>
-<h2 id="hexo的基本使用"><a href="#hexo的基本使用" class="headerlink" title="hexo的基本使用"></a>hexo的基本使用</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>网站的基本信息在安装hexo的根目录下（此时是在hexo文件夹下）的_config.yml.</p>
+<p>   按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。</p>
+<a id="more"></a>
+<h2 id="hexo文件夹目录"><a href="#hexo文件夹目录" class="headerlink" title="hexo文件夹目录"></a>hexo文件夹目录</h2><p>当安装好hexo 后；可以看到在原来的文件夹内，出现了如下文件：</p>
+<pre><code>.
+├── .deplou_git   //
+├── node_modules  //根据package.json自动安装的HEXO项目依赖
+├── public        //最终生成的站点文件，html/css文件等
+├── scaffolds     //模板文件夹，根据md文件生成博客网页文章的模板
+|   ├──post.md    //文章模板
+|   ├──draft.md   //
+|   └──page.md
+├── source        //资源文件夹，
+|   ├── _drafts   //草稿，不可访问的文件
+|   └── _posts    //存放.md的博客文件
+├── themes        // 主题文件夹。Hexo会根据主题来生成静态页面
+|   ├── landscape  
+|   └── yilia     //yilia主题文件
+├── _config.yml   //这里是网站的配置信息
+└── package.json  //HEXO项目依赖
+</code></pre><h2 id="hexo的基本使用"><a href="#hexo的基本使用" class="headerlink" title="hexo的基本使用"></a>hexo的基本使用</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>网站的基本信息在安装hexo的根目录下（此时是在hexo文件夹下）的_config.yml.</p>
 <h4 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h4><pre><code>#Site
 title:       网站标题      
 subtitle:    网站副标题    
@@ -253,9 +270,16 @@ deploy: #上传到GitHub
 <li>显示版本： <code>hexo version</code></li>
 <li>自定义配置文件路径：<code>hexo --config custom.yml</code>,不再使用默认配置文件路径</li>
 </ul>
-<h2 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h2><p>hexo的标签插件独立于Markdown渲染引擎，有独有的渲染方式。<br><blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
-</blockquote></p>
-
+<h2 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h2><p>hexo的标签插件独立于Markdown渲染引擎，有独有的渲染方式。</p>
+<h3 id="引用块"><a href="#引用块" class="headerlink" title="引用块"></a>引用块</h3><p>在文章中插入引言，可以设置作者、来源和标题信息。<br>别号：quote<br>格式：</p>
+<pre><code>{% blockquote [author[, source]] [link] [source_link_title] %}
+     content
+     {% endblockquote %}
+</code></pre><h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>别名：code<br>格式：</p>
+<pre><code>{% codeblock [title] [lang:language] [url] [link text] %}
+    code snippet
+    {% endcodeblock %}
+</code></pre>
       
 
       

@@ -168,94 +168,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>参考：<a href="https://segmentfault.com/a/1190000009477390" target="_blank" rel="external">搭建Hexo博客进阶篇-hexo文档讲解</a><br><a href="https://segmentfault.com/a/1190000009478129" target="_blank" rel="external">搭建Hexo博客进阶篇–Hexo文档讲解（二）</a></p>
-<p>按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。</p>
-<h2 id="hexo文件夹目录"><a href="#hexo文件夹目录" class="headerlink" title="hexo文件夹目录"></a>hexo文件夹目录</h2><p>当安装好hexo 后；可以看到在原来的文件夹内，出现了如下文件：<br>.<br>├── .deplou_git   //<br>├── node_modules  //根据package.json自动安装的HEXO项目依赖<br>├── public        //最终生成的站点文件，html/css文件等<br>├── scaffolds     //模板文件夹，根据md文件生成博客网页文章的模板<br>|   ├──post.md    //文章模板<br>|   ├──draft.md   //<br>|   └──page.md<br>├── source        //资源文件夹，<br>|   ├── _drafts   //草稿，不可访问的文件<br>|   └── _posts    //存放.md的博客文件<br>├── themes        // 主题文件夹。Hexo会根据主题来生成静态页面<br>|   ├── landscape<br>|   └── yilia     //yilia主题文件<br>├── _config.yml   //这里是网站的配置信息<br>└── package.json  //HEXO项目依赖</p>
-<h2 id="hexo的基本使用"><a href="#hexo的基本使用" class="headerlink" title="hexo的基本使用"></a>hexo的基本使用</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>网站的基本信息在安装hexo的根目录下（此时是在hexo文件夹下）的_config.yml.</p>
-<h4 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h4><pre><code>#Site
-title:       网站标题      
-subtitle:    网站副标题    
-description: 网站描述，主要用于SEO，告诉搜索引擎网站的描述，一般为网站关键词      
-author:      您的名字，主页显示文章的作者。
-language:    网站使用的语言 zh-Hans,
-timezone:    网站时区  America/New_York, Japan, 和 UTC
-</code></pre><h4 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h4><pre><code># URL
-## 如果网站在一个子目录里，设置url为子目录地址，设置root为子目录名
-url: 网址；如https://github.com/elsesir/myBlog
-root: 网站根目录/myBlog/
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-</code></pre><h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><pre><code># Directory
-source_dir: source #资源文件夹
-public_dir: public #公共文件夹，生成的站点文件
-tag_dir: tags #标签文件夹
-archive_dir: archives #归档文件夹
-category_dir: categories #分类文件夹
-code_dir: downloads/code #include code 文件夹
-i18n_dir: :lang #国际化文件夹
-skip_render: #跳过指定文件的渲染，可用glob表达式来匹配路径
-</code></pre><h4 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h4><pre><code># Writing
-new_post_name: :title.md # File name of new posts 新文章文件名
-default_layout: post #预设布局
-titlecase: false     #是否把标题转换为title case
-external_link: true  #是否在新标签中打开链接
-filename_case: 0     #把文件名称转换为1小写或2大写
-render_drafts: false #是否显示草稿
-post_asset_folder: false #是否启动Asset文件夹
-relative_link: false  #是否把链接改为与根目录的相对地址
-future: true          #是否显示未来的文章       
-highlight:            #代码块位置
-   enable: true
-   line_number: true
-   auto_detect: false
-   tab_replace:
-</code></pre><h4 id="主页设置"><a href="#主页设置" class="headerlink" title="主页设置"></a>主页设置</h4><pre><code># Home page setting
-# path: Root path for your blogs index page. (default = &apos;&apos;)
-# per_page: Posts displayed per page. (0 = disable pagination)
-# order_by: Posts order. (Order by date descending by default)
-index_generator:
-  path: &apos;&apos; #博客首页根路径，默认是 &apos;&apos;
-  per_page: 10 #每页帖子数
-  order_by: -date #帖子排序，-data以时间排序
-</code></pre><h4 id="分类标签"><a href="#分类标签" class="headerlink" title="分类标签"></a>分类标签</h4><pre><code># Category &amp; Tag
-default_category: uncategorized
-category_map:
-tag_map:
-</code></pre><h4 id="时间-日期格式"><a href="#时间-日期格式" class="headerlink" title="时间/日期格式"></a>时间/日期格式</h4><pre><code># Date / Time format
-## Hexo uses Moment.js to parse and display date
-## You can customize the date format as defined in
-## http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
-time_format: HH:mm:ss
-</code></pre><h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><pre><code># Pagination
-## Set per_page to 0 to disable pagination
-per_page: 10 #每页文章数
-pagination_dir: page
-</code></pre><h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><pre><code>#Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: yilia #主题
-</code></pre><h4 id="一键部署"><a href="#一键部署" class="headerlink" title="一键部署"></a>一键部署</h4><pre><code># Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy: #上传到GitHub
-  type: git 
-  repository: https://github.com/elsesir/myBlog #博客在github上的地址
-  branch: master #分支情况
-</code></pre><h2 id="hexo基本指令"><a href="#hexo基本指令" class="headerlink" title="hexo基本指令"></a>hexo基本指令</h2><ul>
-<li>生成静态文件： <code>hexo generate</code> 简写为hexo g</li>
-<li>部署网站： <code>hexo deploy</code> 简写为hexo d</li>
-<li>本地启动： <code>hexo server</code> 简写为 hexo s，默认在4000端口</li>
-<li>清除缓存： <code>hexo clean</code> ,清除缓存文件和已生成的静态文件，如更换主题后，更改不生效时，可以试一下清除缓存</li>
-<li><code>hexo g -d</code>：生成文件后立即部署网站</li>
-<li><code>hexo g -w(--watch)</code>：文件生成后监视文件改动</li>
-<li><code>hexo s -p 8888 -s -l</code>：重设端口，启动静态文件，启动日记记录，使用覆盖记录格式</li>
-<li>新建文章：<code>hexo new [layout] &lt;title&gt;</code> 标题包含空格加引号</li>
-<li>发表草稿： <code>hexo publish [layout] &lt;filename&gt;</code></li>
-<li>显示版本： <code>hexo version</code></li>
-<li>自定义配置文件路径：<code>hexo --config custom.yml</code>,不再使用默认配置文件路径</li>
-</ul>
-<h2 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h2><p>hexo的标签插件独立于Markdown渲染引擎，有独有的渲染方式。<br><blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
-</blockquote></p>
-
+<p>   按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。</p>
+        
+          <a class="article-more-a" href="/myBlog/2017/08/13/hexo博客设置/#more">more >></a>
+        
       
 
       
@@ -881,40 +797,10 @@ deploy: #上传到GitHub
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h2 id="1-命名函数表达式"><a href="#1-命名函数表达式" class="headerlink" title="1.命名函数表达式"></a>1.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/29/2290308.html" target="_blank" rel="external">命名函数表达式</a></h2><p>1.创建函数：1)函数表达式；2)函数声明。</p>
-<ul>
-<li><em>函数声明一定要带标识符</em>，无标识符的一定是函数表达式。</li>
-<li>function FNAME(){} 作为赋值表达式的一部分–&gt;函数表达式；在函数体内部或者在程序最上面–&gt;函数声明。</li>
-<li><strong>（）</strong>：分组操作符，内部只包含表达式。</li>
-</ul>
-<p>2.两者区别：函数声明会在任何表达式被解析和求值之前先被解析和求值。块内应该只包含函数表达式。<br>3.<strong>命名函数表达式</strong>使得调试更加清楚。<br>4.IE中相关bug：1）函数表达式标识符泄露到外作用域（已修复）；2）命名函数表达式同时被认为是函数申明和函数表达式；3）同时创建出两个不同的对象；4）顺序解析函数申明忽略条件语句<br>5.bug解决：1）防范函数标识符进入外部作用域；2）永远不要引用作为函数名称的标识符，使用arguments.college；3）把命名函数表达式声明期间错误创建的函数清理干净，设置为null。</p>
-<h2 id="2-立即调用的函数表达式"><a href="#2-立即调用的函数表达式" class="headerlink" title="2.立即调用的函数表达式"></a>2.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/31/2289423.html" target="_blank" rel="external">立即调用的函数表达式</a></h2><p>立即调用/自执行</p>
-<ol>
-<li>函数(function)、括号(paren)、语法错误(SyntaxError)</li>
-<li>在函数表达式后面添加括号就可以实现自执行————&gt;要实现自执行，就要让程序区分清楚哪些是函数声明，哪些是函数表达式。函数表达式是可以只执行的，函数声明则会报错，即消除函数声明和表达式的歧义————&gt;给代码段添加一个包含整个代码的括号，【（）内没有语句只有表达式】或者添加一元操作符（&amp;&amp;，异或，逗号，非与等）【可以证明为表达式】；</li>
-<li>用闭包保存状态</li>
-<li>自执行匿名函数与立即调用的函数表达式，上述自执行就是立即调用的意思。</li>
-</ol>
-<h2 id="3-原型与原型链"><a href="#3-原型与原型链" class="headerlink" title="3.原型与原型链"></a>3.<a href="http://www.cnblogs.com/TomXu/archive/2012/01/05/2305453.html" target="_blank" rel="external">原型与原型链</a></h2><ol>
-<li>原型prototype:用对象字面量或者立即执行表达式赋值</li>
-<li>分部声明/重写原型</li>
-<li>原型链<ul>
-<li>属性查找：从下自上向上查找。</li>
-<li>hasOwnProperty:是否包含自定义属性。object.property的方法。处理属性但不查找原型链。<br><code>{}.hasOwnProperty.call(foo, &#39;bar&#39;); // true</code>避免对象内部有自定义的hasOwnProperty方法</li>
-</ul>
-</li>
-</ol>
-<h2 id="4-Module模式"><a href="#4-Module模式" class="headerlink" title="4.Module模式"></a>4.<a href="http://www.cnblogs.com/TomXu/archive/2011/12/30/2288372.html" target="_blank" rel="external">Module模式</a></h2><p>1.基本用法</p>
-<p>2.匿名闭包</p>
-<p>3.扩展</p>
-<ul>
-<li>松耦合扩展 <code>(blogModule || {})</code><br>存在则直接使用，不存在则赋值为{}；<br>任意顺序的加载。</li>
-<li>紧耦合扩展；重载：保存原方法，再重绘<br>4.克隆与继承</li>
-</ul>
-<p>5.跨文件贡献私有对象</p>
-<p>6.子模块</p>
-<h2 id="5-执行上下文"><a href="#5-执行上下文" class="headerlink" title="5.执行上下文"></a>5.<a href="http://www.cnblogs.com/TomXu/archive/2012/01/13/2308101.html" target="_blank" rel="external">执行上下文</a></h2>
+        <p>汤姆大叔深入理解JavaScript系列学习笔记。</p>
+        
+          <a class="article-more-a" href="/myBlog/2017/06/29/深入理解javascript/#more">more >></a>
+        
       
 
       

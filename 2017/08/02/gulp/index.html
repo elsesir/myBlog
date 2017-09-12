@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ElseSir&#39;s blog">
 <meta property="og:description" content="Gulp是基于流的构建工具，可以将你在编程中的各种工作总结成一个函数，这样就可以直接通过函数名调用它而不用重复劳动了-。-尤其是编程是需要不断的刷新页面观察效果，Gulp就可以让我们从不断刷新中解脱出来，实现浏览器的自动刷新。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-12T11:54:20.000Z">
+<meta property="og:updated_time" content="2017-09-12T12:02:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gulp学习">
 <meta name="twitter:description" content="Gulp是基于流的构建工具，可以将你在编程中的各种工作总结成一个函数，这样就可以直接通过函数名调用它而不用重复劳动了-。-尤其是编程是需要不断的刷新页面观察效果，Gulp就可以让我们从不断刷新中解脱出来，实现浏览器的自动刷新。">
@@ -191,15 +191,15 @@
 <li>用npm 直接安装的Gulp是3+的版本，如果想要装4+版，要注明GitHub地址，或者下载之后更新升级。</li>
 </ul>
 <p>下面的介绍是针对3+版本的。</p>
-<h4 id="gulp-task-name-deps-fn"><a href="#gulp-task-name-deps-fn" class="headerlink" title="gulp.task(name[,deps],fn)"></a>gulp.task(name[,deps],fn)</h4><p>定义一个使用Orchestrator实现的任务（task）。</p>
+<h4 id="gulp-task-name-deps-fn"><a href="#gulp-task-name-deps-fn" class="headerlink" title="gulp.task(name[,deps],fn)"></a><code>gulp.task(name[,deps],fn)</code></h4><p>定义一个使用Orchestrator实现的任务（task）。</p>
 <ul>
 <li>name: 任务名称，需要在命令行中运行的任务不要在名字中使用空格。</li>
 <li>deps: 类型Array，一个包含任务列表的数组，这些任务会在你当前任务运行之前完成。保证所依赖的任务列表中的任务都使用了正确的异步执行方式：使用一个callback，或者返回一个promise或stream。</li>
 <li>fn: 该函数定义任务所要执行的一些操作。通常来说，形式如下：<code>gulp.src().pipe(someplugin())</code>。</li>
 <li>异步任务支持：fn:接受一个callback；返回一个stream;返回一个promise。task默认以最大并发数执行。</li>
 </ul>
-<h4 id="gulp-watch-glob-opts-tasks-或者gulp-watch-glob-opts-cb"><a href="#gulp-watch-glob-opts-tasks-或者gulp-watch-glob-opts-cb" class="headerlink" title="gulp.watch(glob[,opts],tasks)或者gulp.watch(glob[,opts,cb])"></a>gulp.watch(glob[,opts],tasks)或者gulp.watch(glob[,opts,cb])</h4><p>监视文件，并且可以在文件发生改动时候做一些事情，总会返回一个EventEmitter来发射(emit)change事件。</p>
-<p>1) gulp.watch(glob[,opts],tasks)</p>
+<h4 id="gulp-watch-glob-opts-tasks-或者gulp-watch-glob-opts-cb"><a href="#gulp-watch-glob-opts-tasks-或者gulp-watch-glob-opts-cb" class="headerlink" title="gulp.watch(glob[,opts],tasks)或者gulp.watch(glob[,opts,cb])"></a><code>gulp.watch(glob[,opts],tasks)或者gulp.watch(glob[,opts,cb])</code></h4><p>监视文件，并且可以在文件发生改动时候做一些事情，总会返回一个EventEmitter来发射(emit)change事件。</p>
+<p>1）gulp.watch(glob[,opts],tasks)</p>
 <ul>
 <li>glob :类型string/Array，一个glob字符串，或者一个包含多个glob字符串的数组，用来指定具体监控哪些文件的变动。</li>
 <li>opts:类型Object，传给gaze的参数。</li>
@@ -209,19 +209,21 @@
 <ul>
 <li>glob: 类型string/Array，一个glob字符串，或者一个包含多个glob字符串的数组，用来指导具体监控哪些文件的变动。</li>
 <li>opts: 类型Object，传给gaze的参数。</li>
-<li><p>cb(event):类型Function，每次变动要执行的callback.</p>
-<pre><code>gilp.watch(&apos;js/**/*.js&apos;,function(event){
-   console.log(&apos;File &apos; + event.path + &apos;was&apos; + event.type + &apos;, running           tasks...&apos;);    
- })
-</code></pre><p>  callback会被传入一个名为event的对象，这个对象描述了所监控到的变动：<br>  event.type:类型string，发生变动的类型：added/changes/deleted.<br>  event.path:类型string，触发了改时间的文件的路径。</p>
-</li>
+<li>cb(event):类型Function，每次变动要执行的callback.</li>
 </ul>
-<p>####Gulp4的特点<br>gulp4特点从使用角度来说，特点是：</p>
+<pre><code> gilp.watch(&apos;js/**/*.js&apos;,function(event){
+     console.log(&apos;File &apos; + event.path + &apos;was&apos; + event.type + &apos;, running           tasks...&apos;);    
+   })
+
+//callback会被传入一个名为event的对象，这个对象描述了所监控到的变动：
+//event.type:类型string，发生变动的类型：added/changes/deleted.
+//event.path:类型string，触发了改时间的文件的路径。
+</code></pre><h4 id="Gulp4的特点"><a href="#Gulp4的特点" class="headerlink" title="Gulp4的特点"></a>Gulp4的特点</h4><p>gulp4特点从使用角度来说，特点是：</p>
 <ul>
 <li>gulp-cil和Gulp分离，下载gulp后，还要使用<code>gulp gulp-cil</code>安装gulp-cil。</li>
 <li>异步化：task变为只有两个参数：(name,fn)</li>
 </ul>
-<p>###如何让浏览器自动刷新<br>教程很多，然而我都没有成功，不断的报错，browserSync出错，我将Gulp由3.X升级到4.x都没有成功（网上教程有些事Gulp3+有些事是+的，要注意 ），中间被安利了github上一个项目<a href="https://github.com/Tencent/tmt-workflow">tmt-workflow</a>,微信大神开发的基于 Gulp(v4.0)、可定制的前端工作流程，高效、跨平台(macOS &amp; Win)。现已推出 GUI 桌面工具：<a href="https://weflow.io/" target="_blank" rel="external">WeFlow</a>（这个是桌面工具，是.dmg文件），无需安装任何环境依赖即可使用，官网下载：<a href="https://weflow.io/" target="_blank" rel="external">http://weflow.io/</a>.大神威武！orz</p>
+<h3 id="如何让浏览器自动刷新"><a href="#如何让浏览器自动刷新" class="headerlink" title="如何让浏览器自动刷新"></a>如何让浏览器自动刷新</h3><p>教程很多，然而我都没有成功，不断的报错，browserSync出错，我将Gulp由3.X升级到4.x都没有成功（网上教程有些事Gulp3+有些事是4+的，要注意 ），中间被安利了github上一个项目<a href="https://github.com/Tencent/tmt-workflow">tmt-workflow</a>,微信大神开发的基于 Gulp(v4.0)、可定制的前端工作流程，高效、跨平台(macOS &amp; Win)。现已推出 GUI 桌面工具：<a href="https://weflow.io/" target="_blank" rel="external">WeFlow</a>（这个是桌面工具，是.dmg文件），无需安装任何环境依赖即可使用，官网下载：<a href="https://weflow.io/" target="_blank" rel="external">http://weflow.io/</a>.大神威武！orz</p>
 <p>但小白不能这么白的直接使用，还是要稍微自己研究一下orz<br>直到这篇文章拯救了我：<a href="https://segmentfault.com/a/1190000003987581" target="_blank" rel="external">前端开发：实时刷新（及时预览）工具小汇总，兼有gulp+browser-sync设置方法</a></p>
 <p>只要这么简单的语句就可以了：<br>直接在控制台输入：</p>
 <pre><code>// 监听css和html文件

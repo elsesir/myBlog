@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
-  <title>Vue路由设置 | ElseSir&#39;s blog</title>
+  <title>Category: 吾爱前端 | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Vue-router提供了路由功能。参考：使用Vue-Router 2实现路由功能">
-<meta name="keywords" content="vue.js">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Vue路由设置">
-<meta property="og:url" content="https://github.com/elsesir/myBlog/2017/09/08/Vue路由设置/index.html">
+  <meta name="description" content="前端学习笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ElseSir&#39;s blog">
+<meta property="og:url" content="https://github.com/elsesir/myBlog/categories/吾爱前端/page/2/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="Vue-router提供了路由功能。参考：使用Vue-Router 2实现路由功能">
+<meta property="og:description" content="前端学习笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-12T05:49:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue路由设置">
-<meta name="twitter:description" content="Vue-router提供了路由功能。参考：使用Vue-Router 2实现路由功能">
+<meta name="twitter:title" content="ElseSir&#39;s blog">
+<meta name="twitter:description" content="前端学习笔记">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -163,80 +161,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Vue路由设置" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Vue路由设置
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/myBlog/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/myBlog/2017/07/25/flex布局/" class="archive-article-date">
+  	<time datetime="2017-07-25T11:28:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/myBlog/2017/07/25/flex布局/">Flex布局</a>
     </h1>
   
 
-        
-        <a href="/myBlog/2017/09/08/Vue路由设置/" class="archive-article-date">
-  	<time datetime="2017-09-08T12:49:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Vue-router提供了路由功能。<br>参考：<a href="http://blog.csdn.net/sinat_17775997/article/details/54710420" target="_blank" rel="external">使用Vue-Router 2实现路由功能</a><br><a id="more"></a></p>
-<h3 id="使用路由"><a href="#使用路由" class="headerlink" title="使用路由"></a>使用路由</h3><p>1）引入路由功能</p>
-<pre><code>import Vue from &apos;vue&apos;
-import Router form &apos;vue-router&apos;
-Vue.use(Router)
-</code></pre><p>2）定义路由</p>
-<pre><code>const routes = [
-    { path: &apos;/index&apos;, component: index },
-    { path: &apos;/hello&apos;, component: hello },
-]
-</code></pre><p>3）创建router实例，传入路由配置</p>
-<pre><code>const router = new Router({
-    routers
-})
-</code></pre><p>4）创建和挂载根实例</p>
-<pre><code>const app = new Vue({
-    router,
-    render: h =&gt; h(App)
-}).$mount(&apos;#app&apos;)
-</code></pre><h3 id="重定向redirect"><a href="#重定向redirect" class="headerlink" title="重定向redirect"></a>重定向redirect</h3><pre><code>path: &apos;/&apos;,redirect: &apos;/index&apos; 
-进/就会跳转到/index
-</code></pre><h3 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h3><pre><code>const routes = [
-    {  path: &apos;/index&apos;, component: index,
-         children: [
-              { path: &apos;info&apos;, component:info}
-              ]
-    }
-]
-通过/index/info就可以访问到info组件了。
-</code></pre><h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><pre><code>const routes = [
-    { path: &apos;/index&apos;, component: resolve =&gt; require([&apos;./index.vue&apos;], resolve) },
-    { path: &apos;/hello&apos;, component: resolve =&gt; require([&apos;./hello.vue&apos;], resolve) },
-]
-</code></pre><p>通过懒加载不会一次性把所有组件都加载进来，而是当组件被访问到时才加载这个组件。对于组件比较多的应用会提供首次加载速度。        </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -249,114 +215,20 @@ Vue.use(Router)
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/elsesir/myBlog/2017/09/08/Vue路由设置/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
   
   
-    <a href="/myBlog/2017/08/29/html中meta总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">html中meta总结</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用路由"><span class="toc-number">1.</span> <span class="toc-text">使用路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向redirect"><span class="toc-number">2.</span> <span class="toc-text">重定向redirect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#嵌套路由"><span class="toc-number">3.</span> <span class="toc-text">嵌套路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#懒加载"><span class="toc-number">4.</span> <span class="toc-text">懒加载</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/myBlog/categories/吾爱前端/">&laquo; Prev</a><a class="page-number" href="/myBlog/categories/吾爱前端/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -380,10 +252,10 @@ Vue.use(Router)
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/myBlog/",

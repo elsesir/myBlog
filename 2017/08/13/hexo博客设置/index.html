@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ElseSir&#39;s blog">
 <meta property="og:description" content="参考：搭建Hexo博客进阶篇-hexo文档讲解搭建Hexo博客进阶篇–Hexo文档讲解（二）    按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-29T16:25:53.000Z">
+<meta property="og:updated_time" content="2017-08-30T08:59:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo静态博客各种设置">
 <meta name="twitter:description" content="参考：搭建Hexo博客进阶篇-hexo文档讲解搭建Hexo博客进阶篇–Hexo文档讲解（二）    按照上一篇内容就可以搭建好博客，但此时的博客是比较简陋的，有各种不合心意的地方，如何进一步优化博客页面，需要了解hexo的各种文件信息，按照自己的喜好细化博客。">
@@ -286,7 +286,8 @@ deploy: #上传到GitHub
 <li>显示版本： <code>hexo version</code></li>
 <li>自定义配置文件路径：<code>hexo --config custom.yml</code>,不再使用默认配置文件路径</li>
 </ul>
-<h2 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h2><p>hexo的标签插件独立于Markdown渲染引擎，有独有的渲染方式。</p>
+<h2 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h2><p>hexo的标签插件独立于Markdown渲染引擎，有独有的渲染方式，Markdown语法虽然基本适用，但还有些区别。</p>
+<p>###图片插入<br>markdown图片插入是：<code>![图片名称](地址)</code>，这样在hexo中是没有问题的。<br>markdown也可以引用<code>&lt;img&gt;</code>标签，这样可以设定图片大小。但是这在hexo中是不行的，会报错。所以目前我只使用了上面的方式。</p>
 <h3 id="引用块"><a href="#引用块" class="headerlink" title="引用块"></a>引用块</h3><p>在文章中插入引言，可以设置作者、来源和标题信息。<br>别号：quote<br>格式：</p>
 <pre><code>{% blockquote [author[, source]] [link] [source_link_title] %}
      content

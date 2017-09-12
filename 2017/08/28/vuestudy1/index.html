@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
   <title>vue.js+vue-cli构建内部系统 (一) | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基本了解了vue之后，就可以创建一个基于vue的内部系统项目，来实际演练一下。">
+  <meta name="description" content="基本了解了vue之后，就可以创建一个基于vue的内部系统项目，来实际演练一下。这篇文章主要包括使用vue-cli创建Vue项目和webstorm添加vue插件。">
 <meta name="keywords" content="vue.js,webstorm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue.js+vue-cli构建内部系统 (一)">
 <meta property="og:url" content="https://github.com/elsesir/myBlog/2017/08/28/vuestudy1/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="基本了解了vue之后，就可以创建一个基于vue的内部系统项目，来实际演练一下。">
+<meta property="og:description" content="基本了解了vue之后，就可以创建一个基于vue的内部系统项目，来实际演练一下。这篇文章主要包括使用vue-cli创建Vue项目和webstorm添加vue插件。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue.png">
 <meta property="og:image" content="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue2.png">
@@ -23,10 +23,10 @@
 <meta property="og:image" content="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue7.png">
 <meta property="og:image" content="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue3.png">
 <meta property="og:image" content="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue8.png">
-<meta property="og:updated_time" content="2017-08-29T16:25:59.000Z">
+<meta property="og:updated_time" content="2017-09-12T05:36:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue.js+vue-cli构建内部系统 (一)">
-<meta name="twitter:description" content="基本了解了vue之后，就可以创建一个基于vue的内部系统项目，来实际演练一下。">
+<meta name="twitter:description" content="基本了解了vue之后，就可以创建一个基于vue的内部系统项目，来实际演练一下。这篇文章主要包括使用vue-cli创建Vue项目和webstorm添加vue插件。">
 <meta name="twitter:image" content="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue.png">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
@@ -191,9 +191,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>基本了解了vue之后，就可以创建一个基于vue的内部系统项目，来实际演练一下。</p>
+        <p>基本了解了vue之后，就可以创建一个基于vue的内部系统项目，来实际演练一下。这篇文章主要包括使用vue-cli创建Vue项目和webstorm添加vue插件。</p>
 <a id="more"></a>
-<p>###使用vue-cli创建Vue项目<br>按照vue官方指南，或者任何一篇教程安装vue并创建Vue项目，我参考的是简书中Alexee的<a href="http://www.jianshu.com/p/f82d55df7e54" target="_blank" rel="external">Vue 2.x 实战之后台管理系统开发（一）</a>,介绍的很详细。这个是默认已经安装了npm/cnpm的。</p>
+<h3 id="使用vue-cli创建Vue项目"><a href="#使用vue-cli创建Vue项目" class="headerlink" title="使用vue-cli创建Vue项目"></a>使用vue-cli创建Vue项目</h3><p>按照vue官方指南，或者任何一篇教程安装vue并创建Vue项目，我参考的是简书中Alexee的<a href="http://www.jianshu.com/p/f82d55df7e54" target="_blank" rel="external">Vue 2.x 实战之后台管理系统开发（一）</a>,介绍的很详细。这个是默认已经安装了npm/cnpm的。</p>
 <pre><code># 安装 vue
 $ cnpm install vue 
 # 全局安装 vue-cli，该工具提供开箱即用的构建工具配置
@@ -209,7 +209,7 @@ $ cnpm run dev
 # 或者（效果一样）
 $ npm run dev
 </code></pre><p>这个时候我们发现，在编辑器中，Vue相关的代码没有高亮，并且还显示错误，虽然可以正常运行，但是看上去还是很纠结的，这是因为编辑器基本都不支持Vue，所有要安装相关插件。</p>
-<p>###webstorm添加Vue插件<br>Webstorm EAP 版已经原生支持vue文件，在没有稳定版前，我们如果坚持使用原来的webstorm，现在已经有Vue插件了，在webstorm -&gt; Preferences -&gt; Plugins,然后搜索vue就可以了。<br><img src="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue.png" alt="示意图1"><br><img src="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue2.png" alt="示意图2"><br>然后，我们发现依然不能新建.vue文件😢:<br><img src="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue5.png" alt="示意图3"><br>所有还要继续设置：</p>
+<h3 id="webstorm添加Vue插件"><a href="#webstorm添加Vue插件" class="headerlink" title="webstorm添加Vue插件"></a>webstorm添加Vue插件</h3><p>Webstorm EAP 版已经原生支持vue文件，在没有稳定版前，我们如果坚持使用原来的webstorm，现在已经有Vue插件了，在webstorm -&gt; Preferences -&gt; Plugins,然后搜索vue就可以了。<br><img src="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue.png" alt="示意图1"><br><img src="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue2.png" alt="示意图2"><br>然后，我们发现依然不能新建.vue文件😢:<br><img src="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue5.png" alt="示意图3"><br>所有还要继续设置：</p>
 <p>1）在Preferences -&gt; Editor -&gt; File and Code Templates中，添加vue File的模板，Name：vue,Extension: vue，再次新建的时候就可以看到在new列表中有vue File选项，可以创建.vue文件了。<br><img src="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue6.png" alt="示意图4"></p>
 <p>在内容部分可以预设自己的模板，但空着也可以。<br>这个时候在新建，我们就可以看到刚刚建立的模板vue File了。<br><img src="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue7.png" alt="示意图5"></p>
 <p>2）这时候，新建的.vue文件没有高亮显示，在同样在Editor（preferences -&gt; Editor）中，选择file Type，在recognized File Type选择HTML，并在Registered Patterns中添加*.vue,这样.vue文件就会高亮。<br><img src="http://ou2blo0sw.bkt.clouddn.com/webstorm_vue3.png" alt="示意图6"></p>
@@ -314,11 +314,11 @@ $ npm run dev
   
 <nav id="article-nav">
   
-    <a href="/myBlog/2017/08/29/vue构建内部系统2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/myBlog/2017/08/29/html中meta总结/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          vue.js+vue-cli构建内部系统 (二)
+          html中meta总结
         
       </div>
     </a>
@@ -352,7 +352,7 @@ $ npm run dev
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用vue-cli创建Vue项目"><span class="toc-number">1.</span> <span class="toc-text">使用vue-cli创建Vue项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webstorm添加Vue插件"><span class="toc-number">2.</span> <span class="toc-text">webstorm添加Vue插件</span></a></li></ol>
                     </div>
                 </span>
             </div>

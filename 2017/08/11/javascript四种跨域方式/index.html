@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="ElseSir&#39;s blog">
 <meta property="og:description" content="同源策略：同协议、同端口、同域。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-29T16:25:48.000Z">
+<meta property="og:updated_time" content="2017-09-25T16:15:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript四种跨域方式">
 <meta name="twitter:description" content="同源策略：同协议、同端口、同域。">
@@ -206,7 +206,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>同源策略：同协议、同端口、同域。<br><a id="more"></a></p>
-<h3 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1.JSONP"></a>1.JSONP</h3><p><code>&lt;script&gt;</code>标签是不受同源策略的限制的，可以载入任何地方的javascript文件。<br>JSONP的理念：和服务器约定好了一个函数名，当请求文件时，服务器返回一段jacascript，这段js调用约定好的函数，并将数据作为参数传入。<br>-只适用get请求。</p>
+<h3 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1.JSONP"></a>1.JSONP</h3><p>JSONP：非正式传输协议，要点是：允许用户传输一个callback参数给服务器，服务器返回时把这个callback参数作为函数名包裹JSON数据。</p>
+<ul>
+<li>只适用get请求。</li>
+<li>不限于JSON格式。<br>1）具体发展过程如下：<br>ajax请求不能跨域；web页面上有src属性的标签都有跨域能力(<code>&lt;img&gt;,&lt;script&gt;,&lt;iframe&gt;</code>).<br>基于图像的是图像ping，不能进行POST操作。<br>基于script标签：可以跨域获取js文件<br>—&gt;将服务器端数据封装在js文件中，供客户端调用。<br>—&gt;json（纯字符数据格式)可以简洁的描述数据。<br>—&gt;客户端像调用脚本一样，调用服务器端动态生成的js文件（JSON后缀，用于封装客户端需要的数据。）<br>—&gt;客户端成功调取JSON文件后，就实现了数据获取。之后就可以按需处理和展示。这种数据获取方式类似于AJAX，但并不一样。<br>—&gt;为了便于客户端获取数据，形成了一种非正式传输协议，就是jsonp。这个协议的要点就是允许用户传输一个callback参数给服务器，服务器返回时把这个callback参数作为函数名来包裹JSON数据，客户端就可以随意定制自己的函数来自动处理返回数据了。<br>jQuery封装：JSONP类型的AJAX。</li>
+</ul>
+<p>2）JSONP和AJAX不同：<br>虽然都是请求一个URL，将返回的数据处理，但本质不同：<br>AJAX核心是通过XMLHttpRequest获取非页面内容。<br>JSONP核心是通过动态添加<code>&lt;script&gt;</code>标签来调用服务器提供的js脚本。<br>不同的不是是否跨域：AJAX也可以通过服务器代理跨域，JSONP也可以同源。<br>JSONP并不一定要用JSON形式。<br>参考：<a href="http://kb.cnblogs.com/page/139725/" target="_blank" rel="external">http://kb.cnblogs.com/page/139725/</a></p>
 <h3 id="2-document-domain"><a href="#2-document-domain" class="headerlink" title="2.document.domain"></a>2.document.domain</h3><ul>
 <li>使用条件：有其他页面window对象的引用；二级域名相同；协议相同；端口相同。</li>
 <li><code>document.domain</code>默认值是整个域名，所以即使两个域名二级域名相同，他们的<code>document.domain</code>也不一样。</li>

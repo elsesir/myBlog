@@ -18,18 +18,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
-  <title>Archives: 2017 | ElseSir&#39;s blog</title>
+  <title>白鹭引擎学习 | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端学习笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ElseSir&#39;s blog">
-<meta property="og:url" content="https://github.com/elsesir/myBlog/archives/2017/page/2/index.html">
+  <meta name="description" content="白鹭引擎白鹭开发者中心观看egret入门：Egret入门">
+<meta name="keywords" content="Egret">
+<meta property="og:type" content="article">
+<meta property="og:title" content="白鹭引擎学习">
+<meta property="og:url" content="https://github.com/elsesir/myBlog/2017/09/14/白鹭引擎学习/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="前端学习笔记">
+<meta property="og:description" content="白鹭引擎白鹭开发者中心观看egret入门：Egret入门">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2017/09/14/img/egret1.png">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2017/09/14/img/egret2.png">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2017/09/14/img/egret3.png">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2017/09/14/img/egret4.png">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2017/09/14/img/egret6.png">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2017/09/14/img/egret7.png">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2017/09/14/img/egret8.png">
+<meta property="og:updated_time" content="2017-09-25T16:18:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElseSir&#39;s blog">
-<meta name="twitter:description" content="前端学习笔记">
+<meta name="twitter:title" content="白鹭引擎学习">
+<meta name="twitter:description" content="白鹭引擎白鹭开发者中心观看egret入门：Egret入门">
+<meta name="twitter:image" content="https://github.com/elsesir/myBlog/2017/09/14/img/egret1.png">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -183,223 +193,229 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-白鹭引擎学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      白鹭引擎学习
+    </h1>
+  
+
+        
+        <a href="/myBlog/2017/09/14/白鹭引擎学习/" class="archive-article-date">
+  	<time datetime="2017-09-13T16:34:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-14</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>白鹭引擎<a href="http://developer.egret.com/cn/" target="_blank" rel="external">白鹭开发者中心</a><br>观看egret入门：<a href="http://edn.egret.com/cn/docs/page/827" target="_blank" rel="external">Egret入门</a><br><a id="more"></a></p>
+<h2 id="1-从Hello-World项目开始。"><a href="#1-从Hello-World项目开始。" class="headerlink" title="1.从Hello World项目开始。"></a>1.从Hello World项目开始。</h2><p>指南：<a href="http://edn.egret.com/cn/docs/page/827" target="_blank" rel="external">从Hello World项目开始</a></p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>1）Egret Wing<br>下载安装Egret  Engine，在工具选项卡中找到Egret Wing 并安装。<br>Egret Wing 是针对Egret 项目的IDE，支持可视化创建、编辑和管理项目GUI，以及TS代码编写和断点调试。<br>2 TypeScript<br>Egret项目使用TypeScript 语言开发，TypeScript是JavaScript的超集。</p>
+<h3 id="创建空项目"><a href="#创建空项目" class="headerlink" title="创建空项目"></a>创建空项目</h3><p>新建一个游戏项目，名称hello world.游戏项目会包含一套helloworld模板，并包含常用的库（game,tween,res）.<br>也可以使用命令行创建项目：<br><code>egret create Helloworld</code></p>
+<p>项目结构<br>创建出来的项目张这样：<br><img src="../img/egret1.png" alt="示意图1"></p>
+<pre><code>helloworld
+ &gt; src        *存放代码，编写的代码都放在src目录下面*
+ &gt; bin-debug  *项目编译和运行的debug目录，一般不需要修改*
+ &gt; libs       *存放库文件，包括Egret核心库和其他扩展库*
+ &gt; polyfill
+ &gt; resource   *存放资源文件*
+      &gt; default.res.json *配置资源*
+ &gt; template   *项目调试过程中所需的目录*
+ egretProperties.json *项目的配置文件，modules字段配置项目的模块*
+ favicon.ico   
+ index.html    *访问的入口文件，可以配置项目的旋转缩放模式背景颜色等*
+ tsconfig.json
+</code></pre><p>index.html<br>第46行开始：<br>data-entry-class=”Main”：设置项目的入口文件，表示项目的入口类，默认为main，自定义的话就在这里配置类的名字。<br>data-orientatio=”auto”：设置旋转模式。<br>data-scale-mode=”showAll”：设置缩放模式。<br>data-frame-rate=”30”：运行的帧率。<br>data-content-width=”480”/data-content-height=”800”：用来设置舞台的设计宽和高。<br>data-show-paint-rect=”false”：设置显示脏矩形的重绘区域。<br>data-multi-fingered=”2”：设置多指触摸。<br>data-show-fps=”false” data-show-log=”false”：设置显示帧率和log,只有在调试时会显示。<br>data-log-filter=””：设置一个正则表达式过滤条件，日志文本匹配这个正则表达式的才会显示这条日志。<br>data-show-fps-style=”..”：设置fps面板样式。</p>
+<h5 id="编写第一行代码"><a href="#编写第一行代码" class="headerlink" title="编写第一行代码"></a>编写第一行代码</h5><p>项目的入口类默认在 src/Main.ts里面，默认包含一个Main类：<br><code>class Main extends egret.DisplayObjectContainer</code><br>extends表示该类继承自什么地方。Egret Engine规定入口文档类必须继承自显示容器DisplayObjectContainer或其子类。<br>我们在119行，createGameScene()函数下添加一行<code>console.log(&quot;hello world&quot;);</code></p>
+<h5 id="调试项目"><a href="#调试项目" class="headerlink" title="调试项目"></a>调试项目</h5><p>下一步就是构建项目，把TypeScript代码编译成JavaScript代码。默认开启自动构建，ctrl + s即可自动构建项目。<br>或者也可以用命令行：<code>egret build</code><br>构建之后点击像蜘蛛🕷一样的调试按钮，就会自动打开浏览器，在浏览器开发者工具中就可以看到log输出了。<br>命令行运行指令：<code>egret startsever</code><br>运行之后效果是这样的:<br><img src="../img/egret2.png" alt="示意图2"></p>
+<h2 id="2-新的项目"><a href="#2-新的项目" class="headerlink" title="2.新的项目"></a>2.新的项目</h2><h3 id="清理项目"><a href="#清理项目" class="headerlink" title="清理项目"></a>清理项目</h3><p>工作环境建立起来了，这个默认项目显示了较复杂的内容，首先我们将显示的内容去掉，以便我们重新开始。</p>
+<p>打开Main.ts文件，将creatGameScene中内容删除，并将之后的所有方法删除。编译后，我们重新载入页面，此时页面已经空白了。</p>
+<p>那么从这片空白真正开启我们的Egret学习路程~</p>
+<h3 id="Egret程序的入口"><a href="#Egret程序的入口" class="headerlink" title="Egret程序的入口"></a>Egret程序的入口</h3><p>Egret语言的以文档类作为入口，入口文件是index.html文件，其中有配置属性：data-entry-class，指明入口函数，默认是Main，可以修改。</p>
+<p>文档类的构造函数，默认是Main类的public constructor(){}，即Egret程序的入口函数，包含代码：<br><code>this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);</code><br>这行代码保证了onAddToStage方法执行时，文档类实例已经被添加到舞台中，并且在onAddToStage方法内，this.stage属性已经有效，其指向舞台对象。</p>
+<h3 id="绘制一个单色背景"><a href="#绘制一个单色背景" class="headerlink" title="绘制一个单色背景"></a>绘制一个单色背景</h3><p>在<code>createGameScene</code>方法内加入绘制代码：<br>1）创建一个egret.Shape对象bg</p>
+<pre><code>var bg:egret.shape = new egret.Shape();
+</code></pre><p>wing很贴心的有类的介绍</p>
+<blockquote>
+<p>class egret.Shape用于使用绘图应用程序编程接口创建简单形状，Shape类含有graphics属性，通过该属性可以访问各种矢量绘图方法。<br><img src="../img/egret3.png" alt="示意图3"><br>2）之后开始绘制：</p>
+</blockquote>
+<pre><code>bg.graphics.beginFill(0x336699);//定义填充颜色
+bg.graphics.drawRect(0,0,this.stage.stageWidth,this.stage.stageHeight);//绘制矩形
+bg.graphics.endFill();//结束绘制工作
+</code></pre><p>3）绘制之后要添加到显示结构中：<br>     super.addChild(bg);//添加到显示结构中  </p>
+<h3 id="调整屏幕适配模式"><a href="#调整屏幕适配模式" class="headerlink" title="调整屏幕适配模式"></a>调整屏幕适配模式</h3><p>Egret项目默认的屏幕适配模式不能缩放。常用的适配模式：<br>showAll:不进行缩放<br>fixedWidth: 占满屏幕<br>在index.html 中data-scale-mode修改。<br>此时效果如下：<br>  <img src="../img/egret4.png" alt="示意图4"> </p>
+<h3 id="显示文字："><a href="#显示文字：" class="headerlink" title="显示文字："></a>显示文字：</h3><p>类似于绘制背景，也是在<code>createGameScene</code>方法中添加：</p>
+<pre><code>var tx: egret.TextField = new egret.TextField();//创建对象
+tx.text = &quot;I&apos;m Else,I will use Egret create a fantasy mobile game!&quot;;
+tx.size =32;
+this.addChild(tx);//添加到显示结构中
+</code></pre><p> 效果：<br> <img src="../img/egret6.png" alt="示意图6"> </p>
+<p>还可以修改格式，使文字排版更美观一点：</p>
+<pre><code>tx.x = 20;
+tx.y = 20;
+tx.width = this.stage.stageWidth - 40;
+</code></pre><p> 效果：<br> <img src="../img/egret7.png" alt="示意图7"> </p>
+<h3 id="响应用户操作"><a href="#响应用户操作" class="headerlink" title="响应用户操作"></a>响应用户操作</h3><p>游戏和应用中，用户交互都是必须的，我们对上一节的文字添加一些响应操作：点击文字后，文字变为绿色。<br>首先，在<code>createGameScene</code>方法中添加touch事件并绑定事件处理函数：</p>
+<pre><code>tx.touchEnabled = true;//允许响应touch事件
+tx.addEventListener(egret.TouchEvent.TOUCH_TAP,this.touchHandler,this);//事件处理函数
+</code></pre><p>之后,在Main类中添加touch事件处理函数：</p>
+<pre><code>/**
+ * 点击之后，改变字体颜色
+ */
+private touchHandler( evt:egret.TouchEvent):void {
+    var tx:egret.TextField = evt.currentTarget;
+    tx.textColor = 0x00ff00;
+}
+</code></pre><p>编译运行之后点击文字会改变颜色：<br><img src="../img/egret8.png" alt="示意图8"> </p>
+<p>事件处理函数除了可以用类的方法来实现外，还可以直接作为匿名函数传入：</p>
+<pre><code>tx.addEventListener(egret.TouchEvent.TOUCH_TAP,
+    function(evt:egret.TouchEvent):void {
+    tx.textColor = 0x00ff00;
+},this);//匿名函数传入
+</code></pre><h3 id="资源加载"><a href="#资源加载" class="headerlink" title="资源加载"></a>资源加载</h3><p>Egret中所有资源都是动态加载的。<br>资源加载清单：Egret资源加载是以一个资源加载清单为基础的，使用json格式作为RES资源加载配置文件，通常资源加载配置文件位于项目目录的resource文件夹内，名为default.res.json。Egret项目在创建时就会包含该文件。里面已经有一些默认的资源。配置资源的规则：</p>
+<ul>
+<li>每一个资源单位都包含三个属性：<ul>
+<li>name：表示这个资源的唯一标识符。</li>
+<li>type：表示资源类型。</li>
+<li>url： 表示当前资源文件的路径，通常约定配置类型的资源置于config子目录下，其他类型置于assets子目录下。</li>
+</ul>
+</li>
+<li><p>每个resource单位中的type，是Egret约定好的若干类型，常见如下：</p>
+<ul>
+<li>image：表示各种常见图片类型，包括png/jpg格式，载入后将解析为egret.Texture对象。</li>
+<li>text：表示文本类型，即文本文件，载入后解析为string对象。</li>
+<li>json： 也是一种文本类型，内容为json格式，载入后直接解析为json对象。</li>
+</ul>
+</li>
+<li><p>为了能够方便加载若干资源，可以将相关资源定义为一个资源组，需要的时候只要加载这个资源组即可。groups是预加载资源组的配置，每项是一个资源组，每一个资源组须包含两个属性：</p>
+<ul>
+<li>name：表示资源组的组名。</li>
+<li>keys：表示这个资源组包含的资源，每个逗号分隔的每个字符串都对应resource下资源的name对应。  </li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/myBlog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/05/node.js学习/" class="archive-article-date">
-  	<time datetime="2017-08-05T10:46:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/05/node.js学习/">Node.js学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Egret</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/elsesir/myBlog/2017/09/14/白鹭引擎学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/02/gulp/" class="archive-article-date">
-  	<time datetime="2017-08-01T17:35:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/myBlog/2017/09/08/Vue路由设置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vue路由设置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/02/gulp/">Gulp学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">gulp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/07/31/javascript面向对象的编程/" class="archive-article-date">
-  	<time datetime="2017-07-31T15:33:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/07/31/javascript面向对象的编程/">JavaScript面向对象的编程</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/07/25/flex布局/" class="archive-article-date">
-  	<time datetime="2017-07-25T11:28:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/07/25/flex布局/">Flex布局</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/myBlog/archives/2017/">&laquo; Prev</a><a class="page-number" href="/myBlog/archives/2017/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
+  
 
 
           </div>
@@ -423,8 +439,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

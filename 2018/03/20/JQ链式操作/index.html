@@ -18,18 +18,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
-  <title>Archives | ElseSir&#39;s blog</title>
+  <title>jQuery链式操作 | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端学习笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ElseSir&#39;s blog">
-<meta property="og:url" content="https://github.com/elsesir/myBlog/archives/page/2/index.html">
+  <meta name="description" content="jQuery有一个很方便的语法，就是链式调用：$(&amp;#39;.show-btn&amp;#39;).css(&amp;#39;background&amp;#39;,&amp;#39;red&amp;#39;).show();我以前还真的没有思考过链式调用的原理是什么- -只是把它当做了JQuery提供的一种特殊语法，面试的时候被问到，我才关注了一下这个神奇的写法到底是怎么回事（￣︶￣）↗">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery链式操作">
+<meta property="og:url" content="https://github.com/elsesir/myBlog/2018/03/20/JQ链式操作/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="前端学习笔记">
+<meta property="og:description" content="jQuery有一个很方便的语法，就是链式调用：$(&amp;#39;.show-btn&amp;#39;).css(&amp;#39;background&amp;#39;,&amp;#39;red&amp;#39;).show();我以前还真的没有思考过链式调用的原理是什么- -只是把它当做了JQuery提供的一种特殊语法，面试的时候被问到，我才关注了一下这个神奇的写法到底是怎么回事（￣︶￣）↗">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-23T08:28:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElseSir&#39;s blog">
-<meta name="twitter:description" content="前端学习笔记">
+<meta name="twitter:title" content="jQuery链式操作">
+<meta name="twitter:description" content="jQuery有一个很方便的语法，就是链式调用：$(&amp;#39;.show-btn&amp;#39;).css(&amp;#39;background&amp;#39;,&amp;#39;red&amp;#39;).show();我以前还真的没有思考过链式调用的原理是什么- -只是把它当做了JQuery提供的一种特殊语法，面试的时候被问到，我才关注了一下这个神奇的写法到底是怎么回事（￣︶￣）↗">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -189,48 +191,59 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JQ链式操作" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jQuery链式操作
+    </h1>
+  
+
+        
+        <a href="/myBlog/2018/03/20/JQ链式操作/" class="archive-article-date">
+  	<time datetime="2018-03-20T09:36:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>jQuery有一个很方便的语法，就是链式调用：<code>$(&#39;.show-btn&#39;).css(&#39;background&#39;,&#39;red&#39;).show();</code>我以前还真的没有思考过链式调用的原理是什么- -只是把它当做了JQuery提供的一种特殊语法，面试的时候被问到，我才关注了一下这个神奇的写法到底是怎么回事（￣︶￣）↗</p>
+<a id="more"></a>
+<h4 id="链式调用的原理"><a href="#链式调用的原理" class="headerlink" title="链式调用的原理"></a>链式调用的原理</h4><p>链式语法的实现的基本原理就是：<code>return this</code>，可以链式调用的函数返回下一个函数的执行父级;</p>
+<p>不确定相关源码，我们就先模拟一下吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function Person() &#123;&#125;</div><div class="line">// 扩展它的prototype</div><div class="line">Person.prototype = &#123;</div><div class="line">	setName: function(name) &#123;</div><div class="line">		this.name = name;</div><div class="line">		return this;</div><div class="line">	&#125;,</div><div class="line">	getName: function() &#123;</div><div class="line">		return this.name;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line">// 工厂函数</div><div class="line">function Ps() &#123;</div><div class="line">	return new Person();</div><div class="line">&#125;</div><div class="line">// 链式调用</div><div class="line">var name = Ps().setName(&apos;Jan&apos;).getName();</div><div class="line">console.log(name);</div></pre></td></tr></table></figure>
+<p>这样就是一个简单的链式调用了=￣ω￣=</p>
+<h4 id="链式调用的好处"><a href="#链式调用的好处" class="headerlink" title="链式调用的好处"></a>链式调用的好处</h4><p>首先，节约JS代码，这个很直观了；</p>
+<p>然后，提高了代码效率，因为对jquery来说，如果每一次都使用<code>$(&#39;.show-btn&#39;)</code>这样的方式，不仅代码量大，而且每一次遇到这样的指令，jquery都会重新获取一次对象，这样就会多次定位相同的DOM，导致操作浪费时间，页面响应变慢。</p>
+<h4 id="链式调用的限制"><a href="#链式调用的限制" class="headerlink" title="链式调用的限制"></a>链式调用的限制</h4><p>链式调用虽然清新美观，但是依然有自己的限制：</p>
+<p>有些时候我们并不是只要整个链式调用的最终结果，如果我们要取中间值的化，一条龙到底的链式调用就不那么好用了。这个时候为了提高效率，我们应该先找到需要操作的元素，保存它的信息，这样就不用每次都重新找一遍元素了。</p>
+<p>另外，链式调用的函数返回的是一个this对象，也就是等于没有返回值，有些环境下就不太实用了。比如上面的例子中getName()函数，我们调用它是希望获取name信息，如果还是返回this就不太合适了。</p>
+<p>参考：<br><a href="http://www.jb51.net/article/33342.html" target="_blank" rel="external">jQuery链式操作如何实现以及为什么要用链式操作</a><br><a href="https://www.cnblogs.com/hanfei-cn/p/5516581.html
+https://www.cnblogs.com/lightsong/p/4003701.html" target="_blank" rel="external">JQ的链式写法详解</a><br><a href="https://www.cnblogs.com/hanfei-cn/p/5516581.html" target="_blank" rel="external">jQuery对象操作支持链式法则源码分析</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/myBlog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/29/html中meta总结/" class="archive-article-date">
-  	<time datetime="2017-08-29T15:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/29/html中meta总结/">html中meta总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jQuery</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -243,453 +256,102 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/elsesir/myBlog/2018/03/20/JQ链式操作/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/28/vuestudy1/" class="archive-article-date">
-  	<time datetime="2017-08-28T11:54:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/myBlog/2018/03/20/JavaScript异步处理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript 异步处理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/28/vuestudy1/">vue.js+vue-cli构建内部系统 (一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">vue.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">webstorm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/13/hexo博客设置/" class="archive-article-date">
-  	<time datetime="2017-08-13T05:28:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/13/hexo博客设置/">hexo静态博客各种设置</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/12/使用github和hexo建立个人博客/" class="archive-article-date">
-  	<time datetime="2017-08-12T09:37:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/12/使用github和hexo建立个人博客/">使用Github和hexo建立个人博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github page</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/11/javascript异步编程/" class="archive-article-date">
-  	<time datetime="2017-08-11T11:19:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/11/javascript异步编程/">JavaScript异步编程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/11/javascript四种跨域方式/" class="archive-article-date">
-  	<time datetime="2017-08-11T08:05:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/11/javascript四种跨域方式/">JavaScript四种跨域方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/08/ajax学习/" class="archive-article-date">
-  	<time datetime="2017-08-08T14:22:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/08/ajax学习/">Ajax学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ajax</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/08/javascript学习：bom/" class="archive-article-date">
-  	<time datetime="2017-08-08T07:41:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/08/javascript学习：bom/">JavaScript学习：BOM</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/05/node.js学习/" class="archive-article-date">
-  	<time datetime="2017-08-05T10:46:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/05/node.js学习/">Node.js学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/02/gulp/" class="archive-article-date">
-  	<time datetime="2017-08-01T17:35:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/02/gulp/">Gulp学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">gulp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/myBlog/archives/">&laquo; Prev</a><a class="page-number" href="/myBlog/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/myBlog/archives/page/3/">3</a><a class="extend next" rel="next" href="/myBlog/archives/page/3/">Next &raquo;</a>
-    </nav>
   
 
+  
 
 
           </div>
@@ -713,8 +375,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

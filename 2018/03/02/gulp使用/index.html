@@ -18,18 +18,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
-  <title>Tag: css | ElseSir&#39;s blog</title>
+  <title>sass 安装和使用Gulp编译sass文件 | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端学习笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ElseSir&#39;s blog">
-<meta property="og:url" content="https://github.com/elsesir/myBlog/tags/css/index.html">
+  <meta name="description" content="Sass 是一款强化CSS的辅助工具，它在CSS语法的基础上增加了变量（variable）、嵌套（nested rules）、混合（mixins）、导入（inline imports）等高级功能，这些拓展令CSS更加强大与优雅。使用Sass以及sass的样式库（如compass）有助于更好地组织管理样式文件，以及更高效地开发项目。">
+<meta name="keywords" content="gulp,sass">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sass 安装和使用Gulp编译sass文件">
+<meta property="og:url" content="https://github.com/elsesir/myBlog/2018/03/02/gulp使用/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="前端学习笔记">
+<meta property="og:description" content="Sass 是一款强化CSS的辅助工具，它在CSS语法的基础上增加了变量（variable）、嵌套（nested rules）、混合（mixins）、导入（inline imports）等高级功能，这些拓展令CSS更加强大与优雅。使用Sass以及sass的样式库（如compass）有助于更好地组织管理样式文件，以及更高效地开发项目。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-23T03:18:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElseSir&#39;s blog">
-<meta name="twitter:description" content="前端学习笔记">
+<meta name="twitter:title" content="sass 安装和使用Gulp编译sass文件">
+<meta name="twitter:description" content="Sass 是一款强化CSS的辅助工具，它在CSS语法的基础上增加了变量（variable）、嵌套（nested rules）、混合（mixins）、导入（inline imports）等高级功能，这些拓展令CSS更加强大与优雅。使用Sass以及sass的样式库（如compass）有助于更好地组织管理样式文件，以及更高效地开发项目。">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -189,60 +191,187 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-gulp使用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/myBlog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2018/02/02/css-单行、多行文本溢出显示省略号/" class="archive-article-date">
-  	<time datetime="2018-02-02T03:36:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2018/02/02/css-单行、多行文本溢出显示省略号/">css 单行、多行文本溢出显示省略号</a>
+    <h1 class="article-title" itemprop="name">
+      sass 安装和使用Gulp编译sass文件
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/myBlog/2018/03/02/gulp使用/" class="archive-article-date">
+  	<time datetime="2018-03-02T08:33:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Sass 是一款强化CSS的辅助工具，它在CSS语法的基础上增加了变量（variable）、嵌套（nested rules）、混合（mixins）、导入（inline imports）等高级功能，这些拓展令CSS更加强大与优雅。使用Sass以及sass的样式库（如compass）有助于更好地组织管理样式文件，以及更高效地开发项目。</p>
+</blockquote>
+ <a id="more"></a>
+<p>引自<a href="https://www.sass.hk/docs/" target="_blank" rel="external">Sass中文网</a></p>
+<h3 id="安装sass"><a href="#安装sass" class="headerlink" title="安装sass"></a>安装sass</h3><ol>
+<li><code>sudo gem</code> </li>
+<li>gem版本升级： <code>sudo gem update --system</code>;</li>
+<li>可能出现的错误：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">YAML safe loading is not available. Please upgrade psych to a version that supports safe loading (&gt;= 2.0).</div><div class="line">ERROR:  SSL verification error at depth 1: unable to get local issuer certificate (20)</div><div class="line">ERROR:  You must add /O=Digital Signature Trust Co./CN=DST Root CA X3 to your local trusted store</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这是版本问题：</p>
+<ul>
+<li><p>安装rvm : <a href="https://www.jianshu.com/p/70d674bffd12" target="_blank" rel="external">RVM使用总结</a></p>
+</li>
+<li><p>更新rudy:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rvm list known  #查看所有可安装版本；—— control+c 后输入q退出（vim语法）；</div><div class="line">rvm install ruby-2.2.2     #安装ruby 2.2.2版本</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p> 如果此时错误如下：即输入的ruby版本有问题，找不到该版本，在rvm list known中再找一个。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> ~ rvm install ruby-2.3.4</div><div class="line">Searching for binary rubies, this might take some time.</div><div class="line">No binary rubies available for: osx/10.11/x86_64/ruby-2.3.4.</div><div class="line">Continuing with compilation. Please read &apos;rvm help mount&apos; to get more information on binary rubies.</div><div class="line">Checking requirements for osx.</div><div class="line">Installing requirements for osx.</div><div class="line">Updating system - please wait</div><div class="line">Installing required packages: autoconf, automake, libtool, pkg-config, coreutils, libyaml, readline, libksba, openssl - please wait</div><div class="line">There were package installation errors, make sure to read the log.</div><div class="line"></div><div class="line">Try `brew tap --repair` and make sure `brew doctor` looks reasonable.</div><div class="line"></div><div class="line">Check Homebrew requirements https://github.com/Homebrew/homebrew/wiki/Installation</div><div class="line">Error running &apos;requirements_osx_brew_libs_install autoconf automake libtool pkg-config coreutils libyaml readline libksba openssl&apos;,</div><div class="line">please read /Users/bigWhite/.rvm/log/1520248991_ruby-2.3.4/package_install_autoconf_automake_libtool_pkg-config_coreutils_libyaml_readline_libksba_openssl.log</div><div class="line">Requirements installation failed with status: 1.</div></pre></td></tr></table></figure>
+<p>如果出现这样的错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Updating system - please wait</div><div class="line">Failed to update Homebrew, follow instructions here:</div><div class="line">    https://github.com/Homebrew/homebrew/wiki/Common-Issues</div><div class="line">and make sure `brew update` works before continuing.</div><div class="line">Error running &apos;requirements_osx_brew_update_system ruby-2.3.4&apos;,</div><div class="line">please read /Users/bigWhite/.rvm/log/1520301946_ruby-2.3.4/update_system.log</div><div class="line">Requi</div><div class="line">rements installation failed with status: 1.</div></pre></td></tr></table></figure>
+<p>这是未安装Homebrew造成的。<br><code>/usr/bin/sudo /bin/mkdir -p /Library/Caches/Homebrew</code><br>安装Homebrew:<br><code>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></p>
+<h3 id="sass-编译"><a href="#sass-编译" class="headerlink" title="sass 编译"></a>sass 编译</h3><ul>
+<li>单个文件：<code>sass &lt;要编译的Sass文件路径&gt;/style.scss:&lt;要输出CSS文件路径&gt;/style.css</code></li>
+<li>整个目录： <code>sass 要编译的目录/:输出的目录/</code></li>
+<li>监测代码变化： <code>sass --watch &lt;要编译的Sass文件路径&gt;/style.scss:&lt;要输出CSS文件路径&gt;/style.css</code></li>
+</ul>
+<h3 id="使用Gulp完成sass自动编译"><a href="#使用Gulp完成sass自动编译" class="headerlink" title="使用Gulp完成sass自动编译"></a>使用Gulp完成sass自动编译</h3><p>安装：<code>npm install gulp-ruby-sass</code><br>基本用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var sass = require(&apos;gulp-ruby-sass&apos;);</div><div class="line"></div><div class="line">// 编译sass</div><div class="line">// 在命令行输入 gulp sass 启动此任务</div><div class="line">gulp.task(&apos;sass&apos;,function() &#123;</div><div class="line">	gulp.src(&apos;./css/*.scss&apos;)</div><div class="line">		.pipe(sass())</div><div class="line">		.pipe(gulp.dest(&apos;./assets/css&apos;));</div><div class="line">		&#125;);</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">gulp</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sass</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/elsesir/myBlog/2018/03/02/gulp使用/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/myBlog/2018/03/15/webpack学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          webpack学习（一）
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/myBlog/2018/02/02/css-单行、多行文本溢出显示省略号/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">css 单行、多行文本溢出显示省略号</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -266,9 +395,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -431,26 +560,6 @@ MathJax.Hub.Queue(function() {
             <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
                 <div class="pswp__share-tooltip"></div> 
             </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-  </div>
-</body>
-</html>
->
 
             <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
             </button>

@@ -18,18 +18,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
-  <title>Archives: 2017 | ElseSir&#39;s blog</title>
+  <title>src 与 JSONP与跨域问题 | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端学习笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ElseSir&#39;s blog">
-<meta property="og:url" content="https://github.com/elsesir/myBlog/archives/2017/page/2/index.html">
+  <meta name="description" content="前端其实有个很常被提到的问题： 跨域问题。跨域问题很常见，比如我们通过&amp;lt;img&amp;gt;标签的src属性在本地展示保存在云端的图片，这其实也是个跨域。要理解跨域问题，首先要了解同源策略：同协议、同端口、同域。">
+<meta name="keywords" content="src,href,jsonp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="src 与 JSONP与跨域问题">
+<meta property="og:url" content="https://github.com/elsesir/myBlog/2018/03/27/src-jsonp/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="前端学习笔记">
+<meta property="og:description" content="前端其实有个很常被提到的问题： 跨域问题。跨域问题很常见，比如我们通过&amp;lt;img&amp;gt;标签的src属性在本地展示保存在云端的图片，这其实也是个跨域。要理解跨域问题，首先要了解同源策略：同协议、同端口、同域。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-26T16:58:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElseSir&#39;s blog">
-<meta name="twitter:description" content="前端学习笔记">
+<meta name="twitter:title" content="src 与 JSONP与跨域问题">
+<meta name="twitter:description" content="前端其实有个很常被提到的问题： 跨域问题。跨域问题很常见，比如我们通过&amp;lt;img&amp;gt;标签的src属性在本地展示保存在云端的图片，这其实也是个跨域。要理解跨域问题，首先要了解同源策略：同协议、同端口、同域。">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -189,48 +191,86 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-src-jsonp" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      src 与 JSONP与跨域问题
+    </h1>
+  
+
+        
+        <a href="/myBlog/2018/03/27/src-jsonp/" class="archive-article-date">
+  	<time datetime="2018-03-26T16:49:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-27</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前端其实有个很常被提到的问题： 跨域问题。跨域问题很常见，比如我们通过<code>&lt;img&gt;</code>标签的src属性在本地展示保存在云端的图片，这其实也是个跨域。要理解跨域问题，首先要了解同源策略：同协议、同端口、同域。</p>
+<a id="more"></a>
+<p>异步请求AJAX其实是要求满足同源策略的，如果你在使用中，感觉AJAX可以直接访问外域，那说明后端帮你配置了CORS（跨域请求资源）。针对AJAX的跨域，可以看这里<a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499861493e7c35be5e0864769a2c06afb4754acc6000" target="_blank" rel="external">廖雪峰AJAX</a>。<br>我就不详细的描述了，因为这其实是后端操作。这里主要介绍JSONP跨域。</p>
+<h3 id="1-src与href"><a href="#1-src与href" class="headerlink" title="1. src与href"></a>1. src与href</h3><p>要理解JSONP跨域，首先要了解src这个属性，img/iframe/script都具有src属性，src是source的缩写，表示“源”。引入资源替换当前元素内容，引入资源位置是可以跨域的。并且，在浏览器解析到该元素时会停止渲染等待资源加载完成后再继续（所以由script标签引入的JS文件最好放在文档结尾）。</p>
+<blockquote>
+<p>对比href属性：href是hypertext Reference，超文本引用，建立当前元素和引入文档的链接。link和a标签都有href属性，如link引入CSS样式文件，是并行加载，不停止对当前文档的处理（这也是用link引入CSS而不推荐@import的原因）</p>
+</blockquote>
+<h3 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2. JSONP"></a>2. JSONP</h3><p>根据src标签的特点，提出了JSONP这个非正式传输协议。</p>
+<blockquote>
+<p>JSONP与JSON：JSON是一个轻量级的数据传输格式，JSONP全称JSON with Padding ，可以看做是JSON的一种“使用形式”，但JSONP传输数据其实并不局限于JSON格式，事实上，JSONP最终传递的是一段JavaScript代码。</p>
+</blockquote>
+<p>JSONP的本质是使用了<code>&lt;script&gt;</code>标签的src属性，用跨域的一段JS代码代替了原来的元素内容。</p>
+<p>这时候需要遵守传统，让我们来举一个栗子吧：</p>
+<p>a.js是我们本地的一个js文件，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a.js</div><div class="line">function getInfo(data) &#123;</div><div class="line">console.log(data.name+&apos; &apos;+data.age);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>data的值呢，其实在服务器上；我们是如何通过JSONP访问到数据的呢？</p>
+<p>1.动态生成一个script标签：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var obj = $(&apos;&lt;script&gt;&lt;\/script&gt;&apos;);</div><div class="line">var url = &quot;http://a.b.c/person.php?id=2&amp;callback=getInfo&quot;;</div><div class="line">obj.attr(&quot;src&quot;,url);</div><div class="line">$(&quot;body&quot;).append(obj);</div></pre></td></tr></table></figure></p>
+<p>2.后端收到这个<code>http://a.b.c/person.php?id=2&amp;callback=getInfo</code>后，就会根据参数，比如这里的 id=2，找到相应的data，假设data={name: ‘Elsa’, age: ‘13’},返回的数据最终是<code>getInfo({name: &#39;Elsa&#39;, age: &#39;13&#39;})</code>;</p>
+<p>3.前端通过src获取到的资源其实是<code>getInfo({name: &#39;Elsa&#39;, age: &#39;13&#39;})</code>，替换了当前script的内容，前端执行到这里的时候实际执行的就是<code>getInfo({name: &#39;Elsa&#39;, age: &#39;13&#39;})</code>。</p>
+<h4 id="2-1-JSONP特点"><a href="#2-1-JSONP特点" class="headerlink" title="2.1 JSONP特点"></a>2.1 JSONP特点</h4><ul>
+<li>只适用get请求。</li>
+<li>不限于JSON格式。</li>
+</ul>
+<h4 id="2-2-具体发展过程如下"><a href="#2-2-具体发展过程如下" class="headerlink" title="2.2 具体发展过程如下"></a>2.2 具体发展过程如下</h4><p>—&gt;ajax请求不能跨域；web页面上有src属性的标签都有跨域能力(<code>&lt;img&gt;,&lt;script&gt;,&lt;iframe&gt;</code>).<br>基于图像的是图像ping，不能进行POST操作。<br>基于script标签：可以跨域获取js文件<br>—&gt;将服务器端数据封装在js文件中，供客户端调用。<br>—&gt;json（纯字符数据格式)可以简洁的描述数据。<br>—&gt;客户端像调用脚本一样，调用服务器端动态生成的js文件（JSON后缀，用于封装客户端需要的数据。）<br>—&gt;客户端成功调取JSON文件后，就实现了数据获取。之后就可以按需处理和展示。这种数据获取方式类似于AJAX，但并不一样。<br>—&gt;为了便于客户端获取数据，形成了一种非正式传输协议，就是jsonp。这个协议的要点就是允许用户传输一个callback参数给服务器，服务器返回时把这个callback参数作为函数名来包裹JSON数据，客户端就可以随意定制自己的函数来自动处理返回数据了。</p>
+<p>—&gt;jQuery封装：JSONP类型的AJAX。</p>
+<h4 id="2-3-JSONP和AJAX不同："><a href="#2-3-JSONP和AJAX不同：" class="headerlink" title="2.3 JSONP和AJAX不同："></a>2.3 JSONP和AJAX不同：</h4><p>虽然都是请求一个URL，将返回的数据处理，但本质不同：</p>
+<ul>
+<li>AJAX核心是通过XMLHttpRequest获取非页面内容。</li>
+<li>JSONP核心是通过动态添加<code>&lt;script&gt;</code>标签来调用服务器提供的js脚本。</li>
+<li>不同的不是是否跨域：AJAX也可以通过服务器代理跨域，JSONP也可以同源。</li>
+<li>JSONP并不一定要用JSON形式。</li>
+</ul>
+<p>参考：<br><a href="http://kb.cnblogs.com/page/139725/" target="_blank" rel="external">说说JSON和JSONP，也许你会豁然开朗</a><br><a href="https://blog.csdn.net/u011897301/article/details/52679486" target="_blank" rel="external">简单透彻理解JSONP原理及使用</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/myBlog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/05/node.js学习/" class="archive-article-date">
-  	<time datetime="2017-08-05T10:46:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/05/node.js学习/">Node.js学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">src</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">href</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">jsonp</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -243,169 +283,102 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/elsesir/myBlog/2018/03/27/src-jsonp/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/02/gulp/" class="archive-article-date">
-  	<time datetime="2017-08-01T17:35:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/myBlog/2018/03/26/vue的深入学习1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue的深入学习（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/02/gulp/">Gulp学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">gulp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/07/31/javascript面向对象的编程/" class="archive-article-date">
-  	<time datetime="2017-07-31T15:33:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/07/31/javascript面向对象的编程/">JavaScript面向对象的编程</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/07/25/flex布局/" class="archive-article-date">
-  	<time datetime="2017-07-25T11:28:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/07/25/flex布局/">Flex布局</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/myBlog/archives/2017/">&laquo; Prev</a><a class="page-number" href="/myBlog/archives/2017/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
+  
 
 
           </div>
@@ -429,8 +402,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

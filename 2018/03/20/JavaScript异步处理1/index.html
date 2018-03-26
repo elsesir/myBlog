@@ -18,18 +18,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
-  <title>Archives: 2017 | ElseSir&#39;s blog</title>
+  <title>JavaScript 异步处理（一） | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端学习笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ElseSir&#39;s blog">
-<meta property="og:url" content="https://github.com/elsesir/myBlog/archives/2017/page/2/index.html">
+  <meta name="description" content="在JavaScript编程中有一个深坑，你总会在不经意间一踩再踩，这就是异步问题。总会在未料想到的地方出现异步问题╮(￣▽￣)╭所以有时候当你找不到数据错误原因的时候，要注意一下是不是出现了异步。">
+<meta name="keywords" content="ES6,promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 异步处理（一）">
+<meta property="og:url" content="https://github.com/elsesir/myBlog/2018/03/20/JavaScript异步处理1/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="前端学习笔记">
+<meta property="og:description" content="在JavaScript编程中有一个深坑，你总会在不经意间一踩再踩，这就是异步问题。总会在未料想到的地方出现异步问题╮(￣▽￣)╭所以有时候当你找不到数据错误原因的时候，要注意一下是不是出现了异步。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2018/03/20/img/promise/promise_1.png">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2018/03/20/img/promise/promise_2.png">
+<meta property="og:image" content="https://github.com/elsesir/myBlog/2018/03/20/img/promise/promise_3.png">
+<meta property="og:updated_time" content="2018-03-26T06:56:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElseSir&#39;s blog">
-<meta name="twitter:description" content="前端学习笔记">
+<meta name="twitter:title" content="JavaScript 异步处理（一）">
+<meta name="twitter:description" content="在JavaScript编程中有一个深坑，你总会在不经意间一踩再踩，这就是异步问题。总会在未料想到的地方出现异步问题╮(￣▽￣)╭所以有时候当你找不到数据错误原因的时候，要注意一下是不是出现了异步。">
+<meta name="twitter:image" content="https://github.com/elsesir/myBlog/2018/03/20/img/promise/promise_1.png">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -189,48 +195,87 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JavaScript异步处理1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript 异步处理（一）
+    </h1>
+  
+
+        
+        <a href="/myBlog/2018/03/20/JavaScript异步处理1/" class="archive-article-date">
+  	<time datetime="2018-03-20T08:49:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在JavaScript编程中有一个深坑，你总会在不经意间一踩再踩，这就是异步问题。总会在未料想到的地方出现异步问题╮(￣▽￣)╭所以有时候当你找不到数据错误原因的时候，要注意一下是不是出现了异步。</p>
+<a id="more"></a>
+<p>要时刻记得：</p>
+<blockquote>
+<p>因为JS的单线程执行的本质，导致所有的网络操作、浏览器事件，都要是异步执行的。</p>
+</blockquote>
+<p>如何处理异步问题呢？</p>
+<p>异步操作最传统的方式是：回调函数callback，比如success/error来区分请求的成功和错误处理方式。虽然这种处理方式经常被人呵呵，但我接触的项目中一直使用都是这种方式- -所以目前真实运行的项目中，这样的处理应该还是很常见的。毕竟有些项目也是不支持ES6的么。</p>
+<p>当然，如果需要的回调函数没有很多层的话（比如我只遇到最多两层的情况），一两层的嵌套还是可以的，但当需要更多层异步判断的时候，就会发现代码因这样的层层嵌套而越来越难以阅读，就是所说的回调深渊问题。</p>
+<p>这个时候，人们也提出的一些处理方法，比如说JQuery 的.Deferred；ES6提出了统一规范：promise，新版本的浏览器都已经支持了，在浏览器控制台输入：<code>new Promise(function () {});</code>就可以检测你的浏览器是支持promise了。</p>
+<p>Promise是什么？请记住下面这段绕口的话：<br><em>promise是一个构造函数，接受一个回调函数，回调函数内部有两个参数，执行成功调用resolve，执行失败调用reject.</em><br>当然，针对Promise真正是个什么东西，好像很多种说法，我们先按这个写-。-</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">new promise(</div><div class="line">	/*  excutor */ </div><div class="line">	function(resolve, reject) &#123;</div><div class="line">		if( /* success */) &#123;</div><div class="line">			// ... 执行代码</div><div class="line">			resolve();</div><div class="line">		&#125; else &#123; /* fail */</div><div class="line">			// ...执行代码</div><div class="line">			reject();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">)；</div></pre></td></tr></table></figure>
+<p>promise有三种状态：</p>
+<ol>
+<li>pending： 初始状态，未定状态</li>
+<li>fulfilled： 完成状态，异步操作成功</li>
+<li>rejected： 失败状态，异步操作失败；<br>1-&gt;3或者2-&gt;3: 单向不可逆的状态转化，毕竟异步都执行完成了，还怎么逆转到初始状态︿(￣︶￣)︿<br>promise常用的操作来说就是.then()和.catch()了：</li>
+</ol>
+<ul>
+<li>promise.prototype.then():<br>promise对象含有then方法，then() 调用后返回一个promise对象——&gt;promise对象可以链式调用。then()方法可以接收两个函数：处理成功后的函数和处理错误结果的函数。</li>
+<li>promise.prototype.catch():<br>catch()方法也返回一个promise对象，主要用于捕捉异步操作是出现的异常。省略then()的第二个参数，在最后加一个.catch()捕获这一条promise链上的异常。</li>
+</ul>
+<p>所以如果这样定义一个函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function ask(flag) &#123;</div><div class="line">	var promise = new Promise(function(resolve,reject)&#123;</div><div class="line">		.....</div><div class="line">	&#125;);</div><div class="line">	return promise;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ask返回的是一个Promise对象，我们就可以进行链式调用了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ask().then(function(success)&#123;&#125;).catch(function(error) &#123;&#125;);</div></pre></td></tr></table></figure></p>
+<p>这样的格式是不是很清新？所以这就是promise解决回调深渊问题。</p>
+<p>当然我们是不断进步的，Promise已经不能满足我们了，ES7又提出的新的语法糖：async,await。<br>async用于声明一个function是异步的；<br>await用于等待一个异步方法执行完成，await只能出现在async函数中。<br>这两个结合我们就会发现：代码按照我们书写的顺序执行了，好像没有异步发生。<br>一个例子：<br>先简单的写一个会有异步的情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var start = function () &#123;</div><div class="line">    console.log(&apos;start&apos;);</div><div class="line">    setTimeout(function()&#123;console.log(&apos;hello&apos;)&#125;,3000);</div><div class="line">    console.log(&apos;end&apos;);</div><div class="line">&#125;;</div><div class="line">start();</div></pre></td></tr></table></figure>
+<p><img src="../img/promise/promise_1.png" alt="image"></p>
+<p>那么这个时候其实输出顺序是：start end undefined (3秒后)hello;这就是异步了，但如果我们使用async和await,如下：<br>——————————–我是分割线—————————<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var start = async function () &#123;</div><div class="line">    // 在这里使用起来就像同步代码那样直观</div><div class="line">    console.log(&apos;start&apos;);</div><div class="line">    await setTimeout(function()&#123;console.log(&apos;hello&apos;)&#125;,3000);</div><div class="line">    console.log(&apos;end&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="../img/promise/promise_2.png" alt="image"><br>此时输出顺序是：<br>start end Promise (3秒后)hello;<br>我很震惊，这和说好的好像不一样，说好的像同步一样呢呢？不过我们可以看到，这个时候返回的值由undefined改为Promise了。总之这个问题下次在研究，我们看下面的写法。</p>
+<p>———————这是无事发生过的分割线—————————-</p>
+<p>但如果我们使用async和await,如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var sleep = function (time) &#123;</div><div class="line">    return new Promise(function (resolve, reject) &#123;</div><div class="line">        setTimeout(function () &#123;</div><div class="line">            resolve();</div><div class="line">        &#125;, time);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var start = async function () &#123;</div><div class="line">    // 在这里使用起来就像同步代码那样直观</div><div class="line">    console.log(&apos;start&apos;);</div><div class="line">    await sleep(3000);</div><div class="line">    console.log(&apos;end&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">start();</div></pre></td></tr></table></figure>
+<p><img src="../img/promise/promise_3.png" alt="image"></p>
+<p>在控制台中运行start(),先输出start，稍等3秒后，输出end。同步执行实现！</p>
+<p>参考文献：</p>
+<p><a href="https://segmentfault.com/a/1190000007678185" target="_blank" rel="external">Promise介绍——基础篇</a><br><a href="http://blog.csdn.net/wang839305939/article/details/75505444" target="_blank" rel="external">ES6/7/8新特性</a><br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345008539155e93fc16046d4bb7854943814c4f9dc2000" target="_blank" rel="external">廖雪峰 - Promise</a><br><a href="https://segmentfault.com/a/1190000007535316" target="_blank" rel="external">理解JavaScript 的async/await</a><br><a href="http://cnodejs.org/topic/5640b80d3a6aa72c5e0030b6" target="_blank" rel="external">体验异步的终极解决方案-ES7的Async/Await</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/myBlog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/05/node.js学习/" class="archive-article-date">
-  	<time datetime="2017-08-05T10:46:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/05/node.js学习/">Node.js学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">promise</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -243,169 +288,111 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/elsesir/myBlog/2018/03/20/JavaScript异步处理1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/02/gulp/" class="archive-article-date">
-  	<time datetime="2017-08-01T17:35:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-02</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/myBlog/2018/03/20/JQ链式操作/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          jQuery链式操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/myBlog/2018/03/15/webpack学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">webpack学习（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/02/gulp/">Gulp学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">gulp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/07/31/javascript面向对象的编程/" class="archive-article-date">
-  	<time datetime="2017-07-31T15:33:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/07/31/javascript面向对象的编程/">JavaScript面向对象的编程</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/07/25/flex布局/" class="archive-article-date">
-  	<time datetime="2017-07-25T11:28:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/07/25/flex布局/">Flex布局</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/myBlog/archives/2017/">&laquo; Prev</a><a class="page-number" href="/myBlog/archives/2017/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
+  
 
 
           </div>
@@ -429,8 +416,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

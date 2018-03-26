@@ -18,18 +18,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
-  <title>Archives: 2017 | ElseSir&#39;s blog</title>
+  <title>vue的深入学习（一） | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端学习笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ElseSir&#39;s blog">
-<meta property="og:url" content="https://github.com/elsesir/myBlog/archives/2017/page/2/index.html">
+  <meta name="description" content="Vue的文档真是一个全面的文档，我遇到的很多问题，最终都能发现Vue文档中其实有提到过，但可惜的是第一次刷文档的时候并不能深刻的认识到其中蕴含的宇宙，总要掉次坑才能认识到文档各处的精妙。">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue的深入学习（一）">
+<meta property="og:url" content="https://github.com/elsesir/myBlog/2018/03/26/vue的深入学习1/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="前端学习笔记">
+<meta property="og:description" content="Vue的文档真是一个全面的文档，我遇到的很多问题，最终都能发现Vue文档中其实有提到过，但可惜的是第一次刷文档的时候并不能深刻的认识到其中蕴含的宇宙，总要掉次坑才能认识到文档各处的精妙。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-26T16:43:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ElseSir&#39;s blog">
-<meta name="twitter:description" content="前端学习笔记">
+<meta name="twitter:title" content="vue的深入学习（一）">
+<meta name="twitter:description" content="Vue的文档真是一个全面的文档，我遇到的很多问题，最终都能发现Vue文档中其实有提到过，但可惜的是第一次刷文档的时候并不能深刻的认识到其中蕴含的宇宙，总要掉次坑才能认识到文档各处的精妙。">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -189,48 +191,66 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vue的深入学习1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue的深入学习（一）
+    </h1>
+  
+
+        
+        <a href="/myBlog/2018/03/26/vue的深入学习1/" class="archive-article-date">
+  	<time datetime="2018-03-26T09:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-26</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Vue的文档真是一个全面的文档，我遇到的很多问题，最终都能发现Vue文档中其实有提到过，但可惜的是第一次刷文档的时候并不能深刻的认识到其中蕴含的宇宙，总要掉次坑才能认识到文档各处的精妙。</p>
+<a id="more"></a>
+<h3 id="1-数组更新监测"><a href="#1-数组更新监测" class="headerlink" title="1. 数组更新监测"></a>1. 数组更新监测</h3><p>我踩得第一个坑，就是数组的更新监测，当时的情况时这样的：<br>我们有一个列表组件，需要添加拖拽排序功能，列表的数据是通过数组传递进来的（毕竟要考虑顺序问题），我试着添加拖拽后，发现列表并没有自动刷新，但打印数据发现数据的顺序是修改了，以Vue的数据双向绑定来说，数据变动不是应该自动刷新显示出来么？然后纠结了很久之后，发现其实是因为：我的排序是使用数组下标对数据进行重排序的，<strong>Vue不能识别这样的变动</strong>。</p>
+<p>在Vue文档中是有提到这一点的：<a href="https://cn.vuejs.org/v2/guide/list.html#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" target="_blank" rel="external">vue文档：数组更新监测注意事项</a></p>
+<p>由于 JavaScript 的限制，Vue 不能检测以下变动的数组：</p>
+<ol>
+<li>当你利用索引直接设置一个项时，例如：vm.items[indexOfItem] = newValue</li>
+<li>当你修改数组的长度时，例如：vm.items.length = newLength；</li>
+</ol>
+<p>如果你想改变数组内容，你需要通过set或者数组相关函数来处理：<br><code>Vue.set(vm.items,indexOfItem,newValue);</code><br><code>vm.items.splice(indexOfItem,1,newValue);</code><br><code>vm.items.splice(newLength); // 删除了从newLength到结尾的数据</code><br>vue 可以感知的数组方法：push(), pop(),shift(),unshift(),splice(),sort(),reverse();</p>
+<h3 id="2-组件中data必须是函数"><a href="#2-组件中data必须是函数" class="headerlink" title="2.组件中data必须是函数"></a>2.组件中data必须是函数</h3><p>这是面试的时候被问道的，不过确实是我一直回避思考的问题：为什么data是函数，数据是return返回值呢？虽然我以前都是骗自己这是Vue的语法问题(￣▽￣)”，这告诉我们，不懂的时候，还是应该多查查真相。</p>
+<p>Vue文档中其实提到了这个问题：<a href="https://cn.vuejs.org/v2/guide/components.html#data-%E5%BF%85%E9%A1%BB%E6%98%AF%E5%87%BD%E6%95%B0" target="_blank" rel="external">vue文档：data必须是函数</a><br>虽然依然在第一次阅读的时候被我忽略了。</p>
+<p>本质是：组件是共享的，但data是私有的。Vue实例只会有一个，但组件是复用的。对于组件来说，如果data仍然是一个对象，那么创建多个实例的时候，多个实例的data指向的是同一个内存地址，一个改变，全部都变。<br>Object是引用数据类型，直接用Object的话，每个组件的对象都是同一个内存地址，一个改变，所有都变。<br>JavaScript中函数时有作用域的，对象的{}并没有块级作用域的概念，data是一个函数时，每个组件都有自己的作用域，相互独立，不会相互影响。</p>
+<p>为什么Vue没有直接把data默认成一个函数呢？我觉得首先，单个Vue实例不需要写成函数，而在组件中，为使用函数形式并不会带来很多的麻烦，而且这是JS本身的问题，深入理解JS后就应该考虑到这个问题，所以真正懂的人其实不会犯这样的错误，如果默认处理的化，其实给人造成困扰了。这是我牵强附会的解释- -</p>
+<h3 id="3-计算属性和watch区别："><a href="#3-计算属性和watch区别：" class="headerlink" title="3.计算属性和watch区别："></a>3.计算属性和watch区别：</h3><p>计算属性和watch都可以感知变化，那为什么有时候用计算属性有时候用watch呢？其实Vue文档中也有说明：<a href="https://cn.vuejs.org/v2/guide/computed.html" target="_blank" rel="external">Vue文档：计算属性和侦听器</a></p>
+<p>计算属性：复杂的逻辑应该使用计算属性，比如我们需要将一个值进行反转<code>message.split(&#39;&#39;).reverse().join(&#39;&#39;)</code>；</p>
+<blockquote>
+<p>计算属性和方法的区别：计算属性是基于它们的依赖进行缓存的，只有它相关依赖改变是才会重新计算。而方法每次都会执行。</p>
+<p>侦听属性：watch()需要在数据变化时执行异步或开销较大的操作时使用。</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/myBlog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/05/node.js学习/" class="archive-article-date">
-  	<time datetime="2017-08-05T10:46:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/05/node.js学习/">Node.js学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -243,169 +263,111 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/elsesir/myBlog/2018/03/26/vue的深入学习1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/08/02/gulp/" class="archive-article-date">
-  	<time datetime="2017-08-01T17:35:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-02</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/myBlog/2018/03/27/src-jsonp/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          src 与 JSONP与跨域问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/myBlog/2018/03/20/JQ链式操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jQuery链式操作</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/08/02/gulp/">Gulp学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">gulp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/07/31/javascript面向对象的编程/" class="archive-article-date">
-  	<time datetime="2017-07-31T15:33:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/07/31/javascript面向对象的编程/">JavaScript面向对象的编程</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/myBlog/2017/07/25/flex布局/" class="archive-article-date">
-  	<time datetime="2017-07-25T11:28:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/myBlog/2017/07/25/flex布局/">Flex布局</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/myBlog/categories/吾爱前端/" class="article-tag-list-link color5">吾爱前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/myBlog/archives/2017/">&laquo; Prev</a><a class="page-number" href="/myBlog/archives/2017/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
+  
 
 
           </div>
@@ -429,8 +391,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

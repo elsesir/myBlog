@@ -18,20 +18,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/elsesir/myBlog">
-  <title>JavaScript异步编程 | ElseSir&#39;s blog</title>
+  <title>vue的学习实践（一） | ElseSir&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考JavaScript异步编程 JavaScript语言执行环境是“单线程”(single thread).Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous). 异步模式编程的4种方法。">
-<meta name="keywords" content="JavaScript">
+  <meta name="description" content="最近正处于工作交接状态，比较闲，所以对网站主要是个人简历页进行了优化：  修改个人简历页代码逻辑：vue实例，变量闪烁问题； 添加弹窗组件：组件使用。  结合上次的深入学习，算一次小的实践吧。">
+<meta name="keywords" content="vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript异步编程">
-<meta property="og:url" content="https://github.com/elsesir/myBlog/2017/08/11/javascript异步编程/index.html">
+<meta property="og:title" content="vue的学习实践（一）">
+<meta property="og:url" content="https://github.com/elsesir/myBlog/2018/04/02/vue的学习实践1/index.html">
 <meta property="og:site_name" content="ElseSir&#39;s blog">
-<meta property="og:description" content="参考JavaScript异步编程 JavaScript语言执行环境是“单线程”(single thread).Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous). 异步模式编程的4种方法。">
+<meta property="og:description" content="最近正处于工作交接状态，比较闲，所以对网站主要是个人简历页进行了优化：  修改个人简历页代码逻辑：vue实例，变量闪烁问题； 添加弹窗组件：组件使用。  结合上次的深入学习，算一次小的实践吧。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-29T16:25:38.000Z">
+<meta property="og:image" content="http://ou2blo0sw.bkt.clouddn.com/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E7%BB%93%E6%9E%84.png">
+<meta property="og:updated_time" content="2018-04-09T06:19:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript异步编程">
-<meta name="twitter:description" content="参考JavaScript异步编程 JavaScript语言执行环境是“单线程”(single thread).Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous). 异步模式编程的4种方法。">
+<meta name="twitter:title" content="vue的学习实践（一）">
+<meta name="twitter:description" content="最近正处于工作交接状态，比较闲，所以对网站主要是个人简历页进行了优化：  修改个人简历页代码逻辑：vue实例，变量闪烁问题； 添加弹窗组件：组件使用。  结合上次的深入学习，算一次小的实践吧。">
+<meta name="twitter:image" content="http://ou2blo0sw.bkt.clouddn.com/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E7%BB%93%E6%9E%84.png">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -191,86 +193,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-javascript异步编程" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-vue的学习实践1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript异步编程
+      vue的学习实践（一）
     </h1>
   
 
         
-        <a href="/myBlog/2017/08/11/javascript异步编程/" class="archive-article-date">
-  	<time datetime="2017-08-11T11:19:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
+        <a href="/myBlog/2018/04/02/vue的学习实践1/" class="archive-article-date">
+  	<time datetime="2018-04-02T02:47:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>参考<a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="external">JavaScript异步编程</a></p>
-<p>JavaScript语言执行环境是“单线程”(single thread).<br>Js将任务执行模式分成两种：同步(Synchronous)和异步(Asynchronous).</p>
-<p>异步模式编程的4种方法。</p>
+        <p>最近正处于工作交接状态，比较闲，所以对网站主要是个人简历页进行了优化：</p>
+<ol>
+<li>修改个人简历页代码逻辑：vue实例，变量闪烁问题；</li>
+<li>添加弹窗组件：组件使用。</li>
+</ol>
+<p>结合上次的深入学习，算一次小的实践吧。</p>
 <a id="more"></a>
-<h3 id="1-回调函数"><a href="#1-回调函数" class="headerlink" title="1.回调函数"></a>1.回调函数</h3><ul>
-<li>优点：简单、容易理解和部署。</li>
-<li>缺点：不利于代码的阅读和维护，各部分之间高度耦合，且每个任务只能指定一个回调函数。 </li>
-</ul>
-<pre><code>function f1(callback) {
-    setTimeout(function () {
-       // f1的任务代码
-       callback();
-    }, 1000);
-}
-f1(f2); 
-</code></pre><h3 id="2-事件监听"><a href="#2-事件监听" class="headerlink" title="2.事件监听"></a>2.事件监听</h3><ul>
-<li>采用事件驱动模式，任务执行不取决于代码的顺序，而取决于某个事件是否发生。</li>
-</ul>
-<pre><code>function f1() {
-     setTimeout(function(){
-          //f2的任务代码
-          fi.trigger(&apos;done&apos;);//执行完成后，立即触发done事件
-     },1000);
-}
-f1.on(&apos;done&apos;,f2);//为f1绑定事件，发生done时，执行f2
-</code></pre><ul>
-<li>优点： 容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，可以去耦合，有利于实现模块化。</li>
-<li>缺点：整个程序都要变成事件驱动型，运行流程不够清晰。</li>
-</ul>
-<h3 id="3-发布-订阅（观察者模式）"><a href="#3-发布-订阅（观察者模式）" class="headerlink" title="3.发布/订阅（观察者模式）"></a>3.发布/订阅（观察者模式）</h3><ul>
-<li>发布订阅模式（publish-subscribe pattern），又称观察者模式（observer pattern）：存在一个信号中心，某个任务执行完成，就向信号中心发布一个信号，其他人物可以向信号中心订阅这个信号，从而知道自己什么时候可以执行。</li>
-<li>jQuery插件Tiny Pub/Sub实现。</li>
-</ul>
-<pre><code>jQuery.subscribe(&quot;done&quot;,f2);//f2订阅done信号
-function f1() {
-    setTimeout( function () {
-        //f1代码
-       jQuery.publish(&quot;done&quot;);//f1完成后向信号中心jQuery发布done信号。
-    },1000);
-}
-jQuery.unsubscribe(&quot;done&quot;,f2);//取消订阅
-</code></pre><ul>
-<li>优点：类似事件监听，但可以通过查看消息中心，了解存在多少信号、每个信号有多少订阅者，从而监控程序运行。</li>
-</ul>
-<h3 id="4-Promises对象"><a href="#4-Promises对象" class="headerlink" title="4.Promises对象"></a>4.Promises对象</h3><ul>
-<li>Promises对象是CommonJS工作组提出的一种规范，目的是为了异步编程提供统一接口。每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。</li>
-</ul>
-<pre><code>function f1() {
-     var dfd = $.Deferred();
-     setTimeout(function (){
-        //f1的代码
-        dfd.resolve()
-     },500);
-     return ddfd.promise;
-}
-f1().then(f2);
-</code></pre><ul>
-<li>优点：回调函数变成了链式写法，程序流程可以看得很清楚，而且有一整套的匹配方法。<br>   <code>f1().then(f2).fail(f3);</code></li>
-<li>缺点：编写和理解比较困难。</li>
-</ul>
+<p>在当初做个人简历页的时候正在学习Vue，所以就随手拿这个页练习了。但当时确实很白呀，完全按照文档一步步来，想用Vue的时候就给元素绑定一个Vue实例ORZ所以当时一个页面有很多个vue并存-。-这告诉我们，看文档的时候也要动脑子的，不是照抄一遍就可以了！这次消灭了这个黑历史，把整个页面归为一个Vue了（虽然我不知道静态页面有什么好写Vue的︿(￣︶￣)︿毕竟我开心就好~~~~）  </p>
+<blockquote>
+<p>Vue作为一个轻型的前端框架，是绝对可以支持一个较大型的项目的。它提供了方便的数据双向绑定，减少甚至避免了我们对DOM的频繁操作。配套的有vuex状态管理。vue-router路由控制等，使用手感很好。使用Vue的时候思路要转换过来，不要老用js的思路走，将DOM操作用Vue提供的指令代替。</p>
+</blockquote>
+<h3 id="1-Vue实例挂载到哪？"><a href="#1-Vue实例挂载到哪？" class="headerlink" title="1. Vue实例挂载到哪？"></a>1. Vue实例挂载到哪？</h3><p>当我们new Vue的时候，需要给它选择一个挂载元素，可以理解为挂载之后该元素的所有子元素都归Vue控制了。</p>
+<p>对于我这个页面来说，主体是一个class=”all-body”的元素，将它绑定vue实例，就可以在子元素上使用Vue提供的指令。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var parsonalInformation = new Vue(&#123;</div><div class="line">    el: &apos;.all-body&apos;,</div><div class="line">    data: &#123;&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Vue1 中，允许将 Vue 实例挂载在 body 上，而 Vue2 是不允许的，想对整个页面实例化，需要另外用一个 div 来容纳整个页面内容，对其进行实例化。</p>
+</blockquote>
+<h3 id="2-data中写些什么？"><a href="#2-data中写些什么？" class="headerlink" title="2.data中写些什么？"></a>2.data中写些什么？</h3><p>选择挂载的元素之后，就要思考data应该有什么，data的值是页面绑定值和状态判断值。我当时做的时候其实只有一个值：personInf，一个对象，保存个人信息。这次呢我希望有个小弹窗组件，就添加了一个弹窗显示控制popsShow和弹窗内容popsContent。data的确定首先是看自己的总体设计，然后在实现和完善过程中逐渐添加，不知不觉中data就会有很多数据了~</p>
+<p>目前的data:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data: &#123;</div><div class="line">    parsonInf: &#123;</div><div class="line">        // name等个人信息数据。</div><div class="line">    &#125;,</div><div class="line">    popsShow: false, // 弹窗是否打开</div><div class="line">    popsContent: &apos;&apos; // 弹窗显示的内容</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>ps:如果这不是静态页面，那比如parsonInf其实应该是从后端传输来的数据，这样通过data就可以实现数据双向绑定了。弹窗的内容也可以根据后端数据更改。</p>
+</blockquote>
+<p>然后我们就象征性的将用户信息绑定到页面上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;p id=&quot;parson-name&quot;&gt;&#123;&#123; parsonInf.name &#125;&#125;&lt;/p&gt;</div></pre></td></tr></table></figure>
+<h3 id="3-一些小问题：变量闪烁"><a href="#3-一些小问题：变量闪烁" class="headerlink" title="3.一些小问题：变量闪烁"></a>3.一些小问题：变量闪烁</h3><p>绑定数据之后，如果刷新页面，会看到页面上数据绑定的位置会短暂的出现双大括号+变量名的样子，也就是数据未替换的样子，过几秒之后才真正显示我们希望的值，这就是变量闪烁。这是因为此时标签未编译完成，Vue实例还没有准备完毕- -如果不想让它显示这个卡顿的过程，可以使用v-cloak指令。</p>
+<p>v-cloak指令的介绍可以看<a href="https://cn.vuejs.org/v2/api/#v-cloak" target="_blank" rel="external">Vue文档</a>，它会保留在元素上直到关联实例结束编译，所以如果我们在在元素上添加v-cloak，并在CSS中添加<br><code>[v-cloak] { display: none;}</code>,就可以解决闪烁问题，这时该元素会在编译完成后才显示。</p>
+<p>v-cloak可以放在挂载元素上，或者是你希望的某个元素。</p>
+<blockquote>
+<p>这个问题还会引入另一个问题：v-cloak无效？<br>这个时候可以看看v-cloak样式是在哪里的文件引入的。项目中常通过 <code>@import</code> 来加载 css 文件<code>@import &quot;style.css&quot;</code>。看到了伐，还记得import和link的区别吗？ <code>@import</code> 是在页面 DOM 完全载入后才会进行加载，如果我们将 <code>[v-cloak]</code> 写在 <code>@import</code> 加载的 css 文件中，那自然就无效了，因为闪烁的时候它还没有被加载进来╭(╯^╰)╮所以如果使用v-cloak，要记得将 <code>[v-cloak]</code> 写在 link 引入的 css 中，或者写一个内联 css 样式。</p>
+</blockquote>
+<p>参考文献：<br><a href="https://cn.vuejs.org/v2/api/#v-cloak" target="_blank" rel="external">Vue文档</a><br><a href="https://segmentfault.com/a/1190000008819667" target="_blank" rel="external">Vue 中的 v-cloak 解读</a></p>
+<h3 id="4-组件学习"><a href="#4-组件学习" class="headerlink" title="4.组件学习"></a>4.组件学习</h3><p>因为这个页面其实是我的个人简历，我希望可以展示我的项目经验，项目经验展开贴在一个页面就会变得长又长，页面就会变得不好看ヽ(｀⌒´)ﾉ！所以我希望可以页面只显示项目简介，点击后弹窗显示该项目详情。</p>
+<p>传统方式来说，我应该写一个div，包含一个mark层，然后点击项目行显示该div，点击mark层关闭，但这样我要给每一个项目写一个div，很多很不必要。所以我想到用Vue组件来实现吧。</p>
+<p>首先，这个组件是一个全局的组件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;pops&apos;,&#123;</div><div class="line">    // 内容</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>对这个弹窗组件的设想是：点击项目列出现弹窗，点击弹窗背景则整个弹窗关闭。<br>弹窗组件应该包括背景部分（pops-bg）和内容部分（pop-content）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;pops&apos;,&#123;</div><div class="line">    template:&apos;&lt;div class=&quot;pops&quot;&gt;&apos; +</div><div class="line">        &apos;&lt;div class=&quot;pop-bg&quot; @click=&quot;bgClick&quot;&gt;&lt;/div&gt;&apos; +</div><div class="line">        &apos;&lt;div class=&quot;pop-content&quot; &gt;&lt;/div&gt;&lt;/div&gt;&apos;,</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>弹窗组件和外界的交互包括：内容是从外部传入的，并向外部提交点击事件。所以我设置了data中的两个值：popsShow:弹窗显示控制，popsContent:弹窗内容。popsContent是要通过prop传递到弹窗组件中，这里传入的是一段HTML代码。弹窗组件会向外提交一个<br>click-popbg;父组件接受click-popbg触发hidePop()。<br>组件关系如下：<br><img src="http://ou2blo0sw.bkt.clouddn.com/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86%E9%A1%B5%E7%BB%84%E4%BB%B6%E7%BB%93%E6%9E%84.png" alt="组件关系"></p>
+<p>弹窗组件代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;pops&apos;, &#123;</div><div class="line">        template:&apos;&lt;div class=&quot;pops&quot;&gt;&apos; +</div><div class="line">        &apos;&lt;div class=&quot;pop-bg&quot; @click=&quot;bgClick&quot;&gt;&lt;/div&gt;&apos; +</div><div class="line">        &apos;&lt;div class=&quot;pop-content&quot; &gt;&lt;/div&gt;&lt;/div&gt;&apos;,</div><div class="line">        data: function() &#123; // data是函数，用返回值</div><div class="line">            return &#123;&#125;;</div><div class="line">        &#125;,</div><div class="line">        props: &#123;</div><div class="line">            popContent: &#123;</div><div class="line">              type: String,</div><div class="line">                default: &apos;&apos;</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">        methods: &#123;</div><div class="line">            bgClick: function() &#123;</div><div class="line">              // console.log(this.popContent);</div><div class="line">              // console.log(&apos;isClick&apos;);</div><div class="line">              this.$emit(&apos;click-popbg&apos;);</div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line">        watch: &#123;</div><div class="line">           popContent: function () &#123;</div><div class="line">               // props传入的是HTML结构，我们希望把这个结构插入组件原模板中，这里使用的是dom操作;</div><div class="line">               $(&apos;.pop-content&apos;).empty().append(this.popContent);</div><div class="line">           &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>组件中的data是函数：保证组件的复用，在<a href="/myBlog/2018/03/26/vue的深入学习1/">Vue的深入学习（一）</a>中有介绍原因。</p>
+</blockquote>
+<p>弹窗组件加载在Vue组件开始的地方：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;all-body&quot; &gt;</div><div class="line"> &lt;pops v-show=&quot;popsShow&quot; @click-popbg=&quot;hidePop&quot; :pop-content=&quot;popsContent&quot;&gt;&lt;/pops&gt;</div></pre></td></tr></table></figure></p>
+<p>在需要点击弹窗的地方绑定事件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;p class=&quot;click-line&quot; v-on:click=&quot;showZJUT&quot;&gt;xxxxxxx&lt;/p&gt;</div></pre></td></tr></table></figure></p>
+<p>在Vue实例中methods添加方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">showPop: function() &#123;</div><div class="line">                this.popsShow = true;</div><div class="line">            &#125;,</div><div class="line">showZJUT: function()  &#123;</div><div class="line">                this.popsContent = &apos;&lt;p class=&quot;experience-part_title&quot;&gt;xxxxx&lt;/p&gt;&apos;+</div><div class="line">                    &apos;&lt;p&gt;xxx&lt;/p&gt;&apos;+</div><div class="line">                &apos;&lt;p&gt;&lt;span&gt;主修课程：&lt;/span&gt;xxxx；&lt;/p&gt;&apos;+</div><div class="line">                &apos;&lt;p&gt;&lt;span&gt;主要工作：&lt;/span&gt;xxx&lt;/p&gt;&apos;;</div><div class="line">                this.showPop();</div><div class="line">            &#125;,</div></pre></td></tr></table></figure></p>
+<p>这样就是一个简单的组件创建和使用的过程了~</p>
+<p>除了这些修改，我还希望可以实现页面的主题切换，会总结在Vue的学习实践（二）中。</p>
 
       
 
@@ -284,7 +274,7 @@ f1().then(f2);
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		
 		</ul>
@@ -351,7 +341,7 @@ f1().then(f2);
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/elsesir/myBlog/2017/08/11/javascript异步编程/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/elsesir/myBlog/2018/04/02/vue的学习实践1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -365,18 +355,9 @@ f1().then(f2);
   
 <nav id="article-nav">
   
-    <a href="/myBlog/2017/08/12/使用github和hexo建立个人博客/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          使用Github和hexo建立个人博客
-        
-      </div>
-    </a>
   
-  
-    <a href="/myBlog/2017/08/08/ajax学习/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Ajax学习</div>
+    <a href="/myBlog/2018/03/27/src-jsonp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">src 与 JSONP与跨域问题</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -395,19 +376,6 @@ f1().then(f2);
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-回调函数"><span class="toc-number">1.</span> <span class="toc-text">1.回调函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-事件监听"><span class="toc-number">2.</span> <span class="toc-text">2.事件监听</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-发布-订阅（观察者模式）"><span class="toc-number">3.</span> <span class="toc-text">3.发布/订阅（观察者模式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Promises对象"><span class="toc-number">4.</span> <span class="toc-text">4.Promises对象</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>

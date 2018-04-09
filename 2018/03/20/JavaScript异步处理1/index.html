@@ -28,14 +28,14 @@
 <meta property="og:site_name" content="ElseSir&#39;s blog">
 <meta property="og:description" content="在JavaScript编程中有一个深坑，你总会在不经意间一踩再踩，这就是异步问题。总会在未料想到的地方出现异步问题╮(￣▽￣)╭所以有时候当你找不到数据错误原因的时候，要注意一下是不是出现了异步。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/elsesir/myBlog/2018/03/20/img/promise/promise_1.png">
-<meta property="og:image" content="https://github.com/elsesir/myBlog/2018/03/20/img/promise/promise_2.png">
-<meta property="og:image" content="https://github.com/elsesir/myBlog/2018/03/20/img/promise/promise_3.png">
-<meta property="og:updated_time" content="2018-04-03T11:13:38.000Z">
+<meta property="og:image" content="https://github.com/myBlog/img/promise/promise_1.png">
+<meta property="og:image" content="https://github.com/myBlog/img/promise/promise_2.png">
+<meta property="og:image" content="https://github.com/myBlog/img/promise/promise_3.png">
+<meta property="og:updated_time" content="2018-04-09T06:24:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 异步处理（一）">
 <meta name="twitter:description" content="在JavaScript编程中有一个深坑，你总会在不经意间一踩再踩，这就是异步问题。总会在未料想到的地方出现异步问题╮(￣▽￣)╭所以有时候当你找不到数据错误原因的时候，要注意一下是不是出现了异步。">
-<meta name="twitter:image" content="https://github.com/elsesir/myBlog/2018/03/20/img/promise/promise_1.png">
+<meta name="twitter:image" content="https://github.com/myBlog/img/promise/promise_1.png">
   
     <link rel="alternative" href="/atom.xml" title="ElseSir&#39;s blog" type="application/atom+xml">
   
@@ -242,13 +242,13 @@
 <p>这样的格式是不是很清新？所以这就是promise解决回调深渊问题。</p>
 <p>当然我们是不断进步的，Promise已经不能满足我们了，ES7又提出的新的语法糖：async,await。<br>async用于声明一个function是异步的；<br>await用于等待一个异步方法执行完成，await只能出现在async函数中。<br>这两个结合我们就会发现：代码按照我们书写的顺序执行了，好像没有异步发生。<br>一个例子：<br>先简单的写一个会有异步的情况：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var start = function () &#123;</div><div class="line">    console.log(&apos;start&apos;);</div><div class="line">    setTimeout(function()&#123;console.log(&apos;hello&apos;)&#125;,3000);</div><div class="line">    console.log(&apos;end&apos;);</div><div class="line">&#125;;</div><div class="line">start();</div></pre></td></tr></table></figure>
-<p><img src="../img/promise/promise_1.png" alt="image"></p>
+<p><img src="/myBlog/img/promise/promise_1.png" alt="image"></p>
 <p>那么这个时候其实输出顺序是：start end undefined (3秒后)hello;这就是异步了，但如果我们使用async和await,如下：<br>——————————–我是分割线—————————<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var start = async function () &#123;</div><div class="line">    // 在这里使用起来就像同步代码那样直观</div><div class="line">    console.log(&apos;start&apos;);</div><div class="line">    await setTimeout(function()&#123;console.log(&apos;hello&apos;)&#125;,3000);</div><div class="line">    console.log(&apos;end&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p><img src="../img/promise/promise_2.png" alt="image"><br>此时输出顺序是：<br>start end Promise (3秒后)hello;<br>我很震惊，这和说好的好像不一样，说好的像同步一样呢呢？不过我们可以看到，这个时候返回的值由undefined改为Promise了。总之这个问题下次在研究，我们看下面的写法。</p>
+<p><img src="/myBlog/img/promise/promise_2.png" alt="image"><br>此时输出顺序是：<br>start end Promise (3秒后)hello;<br>我很震惊，这和说好的好像不一样，说好的像同步一样呢呢？不过我们可以看到，这个时候返回的值由undefined改为Promise了。总之这个问题下次在研究，我们看下面的写法。</p>
 <p>———————这是无事发生过的分割线—————————-</p>
 <p>但如果我们使用async和await,如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var sleep = function (time) &#123;</div><div class="line">    return new Promise(function (resolve, reject) &#123;</div><div class="line">        setTimeout(function () &#123;</div><div class="line">            resolve();</div><div class="line">        &#125;, time);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var start = async function () &#123;</div><div class="line">    // 在这里使用起来就像同步代码那样直观</div><div class="line">    console.log(&apos;start&apos;);</div><div class="line">    await sleep(3000);</div><div class="line">    console.log(&apos;end&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">start();</div></pre></td></tr></table></figure>
-<p><img src="../img/promise/promise_3.png" alt="image"></p>
+<p><img src="/myBlog/img/promise/promise_3.png" alt="image"></p>
 <p>在控制台中运行start(),先输出start，稍等3秒后，输出end。同步执行实现！</p>
 <p>参考文献：</p>
 <p><a href="https://segmentfault.com/a/1190000007678185" target="_blank" rel="external">Promise介绍——基础篇</a><br><a href="http://blog.csdn.net/wang839305939/article/details/75505444" target="_blank" rel="external">ES6/7/8新特性</a><br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345008539155e93fc16046d4bb7854943814c4f9dc2000" target="_blank" rel="external">廖雪峰 - Promise</a><br><a href="https://segmentfault.com/a/1190000007535316" target="_blank" rel="external">理解JavaScript 的async/await</a><br><a href="http://cnodejs.org/topic/5640b80d3a6aa72c5e0030b6" target="_blank" rel="external">体验异步的终极解决方案-ES7的Async/Await</a></p>
